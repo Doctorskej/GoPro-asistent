@@ -4,7 +4,8 @@ import streamlit as st
 st.set_page_config(page_title="GoPro & DJI Asistent", page_icon="🎬", layout="centered")
 
 # 2. VLASTNÍ MODERNÍ DESIGN (CSS Injekce)
-pozadi_url = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop"
+# --- NOVÉ POZADÍ: Průmyslový robot / výrobní linka ---
+pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
 <style>
