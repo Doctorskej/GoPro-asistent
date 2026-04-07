@@ -3,41 +3,48 @@ import streamlit as st
 # 1. NASTAVENÍ STRÁNKY
 st.set_page_config(page_title="GoPro & DJI Asistent", page_icon="🎬", layout="wide")
 
-# 2. VLASTNÍ MODERNÍ DESIGN
+# 2. VLASTNÍ MODERNÍ DESIGN (Opravený UX/UI)
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
 <style>
-/* Obrázek na pozadí přes celou obrazovku */
+/* OPRAVA 1: Dokonalé ztmavení celé fotky pomocí gradientu (čitelnost 100%) */
 .stApp {{
-    background-image: url("{pozadi_url}");
+    background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url("{pozadi_url}");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }}
 
-/* Tmavý, poloprůhledný podklad pod textem (Glassmorphism) */
+/* Čistý kontejner bez dalších podkresů */
 .block-container {{
-    background-color: rgba(15, 15, 15, 0.65); 
     padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(2px);
 }}
 
-/* Změna barvy hlavních nadpisů na dynamickou "GoPro modrou" */
+/* OPRAVA 2: Čisté nadpisy (GoPro modrá, bez stínů) */
 h1, h2, h3 {{
     color: #00AEEF !important;
     font-weight: 800 !important;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+    text-shadow: none !important;
 }}
 
-/* Světlejší text pro lepší čitelnost na tmavém pozadí */
+/* OPRAVA 3: Čistý a ostrý bílý text (bez stínů) */
 p, li, label, div.stRadio > div {{
     color: #FFFFFF !important;
     font-size: 1.1rem;
     font-weight: 500;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+    text-shadow: none !important;
+}}
+
+/* OPRAVA 4: Viditelné odkazy (Přebarvení defaultní HTML modré) */
+a {{
+    color: #00AEEF !important;
+    text-decoration: none !important;
+    font-weight: 600;
+}}
+a:hover {{
+    color: #FFFFFF !important;
+    text-decoration: underline !important;
 }}
 
 /* Lehké zakulacení a stín pro samotná videa */
@@ -54,7 +61,7 @@ div[data-testid="stVideo"] {{
 st.title("🎬 GoPro & DJI Asistent")
 st.write("Vyber si typ připojení zvuku, který jdeš zrovna zapojit, a já ti dám přesný návod.")
 
-# --- ZMĚNA: Úprava poměru sloupců pro širší pravý panel (poměr 3:2) ---
+# Hlavní rozdělení obrazovky (Levý sloupec pro návod, Pravý pro tipy)
 levy_sloupec, pravy_sloupec = st.columns([3, 2], gap="large")
 
 # --- HLAVNÍ OBSAH (LEVÝ SLOUPEC) ---
@@ -74,7 +81,8 @@ with levy_sloupec:
         
         with video_sl:
             st.write("**Videonávod:**")
-            st.video("https://www.youtube.com/watch?v=9L9m5B8pXxE")
+            # Vyměněno za reálně fungující testovací GoPro video
+            st.video("https://www.youtube.com/watch?v=LXb3EKWsInQ")
             st.markdown("*Ideální pro maximální minimalismus.*")
 
         with text_sl:
@@ -103,7 +111,8 @@ with levy_sloupec:
         
         with video_sl:
             st.write("**Videonávod:**")
-            st.video("https://www.youtube.com/watch?v=9L9m5B8pXxE")
+            # Vyměněno za reálně fungující testovací GoPro video
+            st.video("https://www.youtube.com/watch?v=LXb3EKWsInQ")
 
         with text_sl:
             st.markdown("""
@@ -130,11 +139,10 @@ with pravy_sloupec:
     st.header("💡 Tipy a triky")
     st.markdown("*Užitečné rady pro natáčení na linkách.*")
     
-    # --- ZMĚNA: Odstraněna videa, nahrazeno odkazy s ikonkami ---
     st.markdown("""
     **🎥 Videonávody:**
-    * [Jak správně uchytit GoPro na rám stroje](https://www.youtube.com/watch?v=9L9m5B8pXxE)
-    * [Jak nastavit expozici (obraz) v temné hale](https://www.youtube.com/watch?v=9L9m5B8pXxE)
+    * [Jak správně uchytit GoPro na rám stroje](https://www.youtube.com/watch?v=LXb3EKWsInQ)
+    * [Jak nastavit expozici (obraz) v temné hale](https://www.youtube.com/watch?v=LXb3EKWsInQ)
     
     ---
     **Další užitečné odkazy:**
