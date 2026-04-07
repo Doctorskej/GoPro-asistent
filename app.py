@@ -4,7 +4,6 @@ import streamlit as st
 st.set_page_config(page_title="GoPro & DJI Asistent", page_icon="🎬", layout="centered")
 
 # 2. VLASTNÍ MODERNÍ DESIGN (CSS Injekce)
-# Zde si můžeš do uvozovek vložit odkaz na jakoukoliv jinou fotku (např. staženou z Unsplash.com)
 pozadi_url = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
@@ -66,46 +65,47 @@ if scenar == "1. Připojení JEDNOHO mikrofonu (Napřímo přes Bluetooth)":
     st.header("🔵 Postup pro přímé Bluetooth spojení")
     
     st.write("**Videonávod: Jak přepnout mikrofon a spárovat ho**")
-    st.video("https://www.youtube.com/watch?v=AuJlC2V7XEQ&t=613s")
+    st.video("https://www.youtube.com/watch?v=9L9m5B8pXxE")
 
     st.markdown("""
-    *Ideální pro maximální minimalismus. Nepotřebuješ Media Mod ani přijímač.*
+    ### Příprava mikrofonu:
+    1. **Vyjmi mikrofon** z dokovací stanice DJI.
+    2. **Zkontroluj napájení:** Mikrofon musí být zapnutý (bliká zelené tlačítko).
+       * *Tip: Pokud nesvítí, zapni ho podržením červeného tlačítka, dokud se nerozbliká zelená dioda.*
 
-    ### 1. Příprava mikrofonu (Vysílače DJI Mic 2):
-    * Zapni mikrofon (podrž boční zapínací tlačítko, rozsvítí se zelená dioda).
-    * **Přepnutí do Bluetooth režimu:** Podrž tlačítko **Nahrávání (Record)** s červenou tečkou zhruba na 3 vteřiny, dokud boční kontrolka nezmění barvu ze zelené na **modrou** (začne pomalu blikat).
-    * **Párovací režim:** Nyní podrž tlačítko **Link** (Párování - hned vedle diody) asi na 2 vteřiny, dokud modrá kontrolka nezačne **rychle blikat**. Mikrofon teď hledá kameru.
+    ### Nastavení kamery:
+    3. **Zapni kameru** stisknutím bočního tlačítka `MODE`.
+    4. Na displeji **přejeď prstem seshora dolů** (otevře se horní menu).
+    5. Následně **přejeď prstem doleva** na další obrazovku.
+    6. Stiskni možnost **„Pair device“** (Spárovat zařízení).
 
-    ### 2. Nastavení na GoPro HERO13:
-    * Zapni kameru a stáhni horní menu prstem dolů (Dashboard).
-    * Přejdi prstem doleva na **Předvolby (Preferences)** ➔ **Bezdrátová připojení (Wireless Connections)** ➔ **Připojit zařízení (Connect Device)**.
-    * Vyber možnost **Bluetooth zařízení**. Kamera začne vyhledávat.
-
-    ### 3. Spojení a kontrola:
-    * Jakmile se na displeji kamery objeví **"DJI Mic 2"**, klikni na něj.
-    * Dioda na mikrofonu přestane blikat a začne svítit **nepřerušovaně modře**.
+    ### Samotné párování:
+    7. Na mikrofonu **podrž tlačítko Link** na 3 vteřiny (dioda začne blikat modro-zeleně).
+    8. Na displeji kamery se po chvíli objeví nápis **DJI Mic 3 TX**.
+    9. **Klikni na tento řádek.** Zařízení se úspěšně propojí (text na kameře zmodrá a dioda na mikrofonu začne svítit nepřerušovaně modře).
     """)
 
 elif scenar == "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)":
-    st.header("📡 Postup pro plný DJI Mic 2 systém")
+    st.header("📡 Propojení kamery s Media Modem a přijímačem RX")
     
     st.write("**Videonávod: Fyzické zapojení sestavy**")
     st.video("https://www.youtube.com/watch?v=9L9m5B8pXxE")
 
     st.markdown("""
-    *Profesionální řešení pro 100% spolehlivost a interní zálohu zvuku.*
+    ### Instalace Media Modu:
+    1. **Odstraň dvířka** kamery.
+    2. **Otevři Media Mod**.
+    3. **Vlož kameru** do Media Modu, aby se konektory propojily.
+    4. **Zavři Media Mod**.
 
-    ### Co potřebuješ:
-    1.  **GoPro HERO13 Black** v nasazeném **Media Modu**.
-    2.  **DJI Mic 2 Receiver** (Přijímač) a **Transmitter** (Vysílač).
-    3.  **3.5mm TRS kabel** (kroucený, s černými kroužky).
+    ### Příprava DJI přijímače a mikrofonů:
+    5. **Vyjmi přijímač** z pouzdra.
+    6. **Potvrď informaci** s QR kódem na displeji přijímače (Confirm).
+    7. **Vyjmi oba mikrofony** a zkontroluj, že jejich diody svítí zeleně.
 
-    ### Postup instalace:
-    1.  **Uchycení:** Nasuň DJI Mic 2 Receiver do horních nebo bočních sáněk na Media Modu. Displej směřuje k tobě.
-    2.  **Propojení zvuku kabelem:** Jeden konec kabelu zapoj do výstupu na DJI přijímači ("OUT") a druhý konec do vstupu na zadní straně Media Modu (ikona mikrofonu).
-
-    ### Konfigurace a kontrola:
-    1.  **Nastavení v menu GoPro:** Jdi do: **Předvolby (Preferences)** ➔ **Vstupy/Výstupy (Audio Input)** a zvol možnost **Standardní mikrofon (Standard Mic)**.
-    2.  **Zisk na DJI:** Na displeji přijímače nastav výstupní úroveň (Gain) na **-6 dB**, abys zvuk nepřebudil.
-    3.  **Kontrola:** Na displeji kamery i přijímače musí při mluvení skákat zelené audio sloupečky.
+    ### Fyzické propojení:
+    8. **Nasuň přijímač** z boku Media Modu displejem směrem k sobě.
+    9. **Zapoj kabel** do přijímače (konektor OUT).
+    10. **Zapoj kabel do kamery** (do spodního vstupu na zadní straně Media Modu).
+    11. **Zapni kameru**.
     """)
