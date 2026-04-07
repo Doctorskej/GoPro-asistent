@@ -32,17 +32,9 @@ h1, h2, h3 {{
 }}
 
 /* Světlejší text pro lepší čitelnost na tmavém pozadí */
-p, li {{
-    color: #F0F0F0;
+p, li, label {{
+    color: #F0F0F0 !important;
     font-size: 1.1rem;
-}}
-
-/* Cool vzhled pro rozbalovací menu */
-div[data-baseweb="select"] > div {{
-    background-color: #222222;
-    border: 2px solid #00AEEF;
-    border-radius: 10px;
-    color: white;
 }}
 
 /* Lehké zakulacení a stín pro samotná videa */
@@ -64,10 +56,10 @@ levy_sloupec, pravy_sloupec = st.columns([2, 1], gap="large")
 
 # --- HLAVNÍ OBSAH (LEVÝ SLOUPEC) ---
 with levy_sloupec:
-    scenar = st.selectbox(
+    # --- ZMĚNA ZDE: st.radio místo st.selectbox ---
+    scenar = st.radio(
         "Co máš dnes v plánu?",
         (
-            "Vyber postup zapojení...",
             "1. Připojení JEDNOHO mikrofonu (Napřímo přes Bluetooth)",
             "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)"
         )
@@ -76,7 +68,6 @@ with levy_sloupec:
     if scenar == "1. Připojení JEDNOHO mikrofonu (Napřímo přes Bluetooth)":
         st.header("🔵 Postup pro přímé Bluetooth spojení")
         
-        # --- ZMĚNA: Vnořené sloupce pro video a text vedle sebe ---
         video_sl, text_sl = st.columns([1, 1.2], gap="medium")
         
         with video_sl:
@@ -106,7 +97,6 @@ with levy_sloupec:
     elif scenar == "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)":
         st.header("📡 Propojení kamery s Media Modem a přijímačem RX")
         
-        # --- ZMĚNA: Vnořené sloupce pro video a text vedle sebe ---
         video_sl, text_sl = st.columns([1, 1.2], gap="medium")
         
         with video_sl:
@@ -138,7 +128,6 @@ with pravy_sloupec:
     st.header("💡 Tipy a triky")
     st.markdown("*Užitečné rady pro natáčení na linkách.*")
     
-    # Zmenšení videí v pravém sloupci pomocí fiktivního oříznutí
     mini_sl, prazdny_sl = st.columns([5, 1])
     with mini_sl:
         st.write("**Jak správně uchytit GoPro na rám stroje:**")
