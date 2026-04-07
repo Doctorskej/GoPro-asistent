@@ -3,7 +3,7 @@ import streamlit as st
 # 1. NASTAVENÍ STRÁNKY
 st.set_page_config(page_title="GoPro & DJI Asistent", page_icon="🎬", layout="wide")
 
-# 2. VLASTNÍ MODERNÍ DESIGN (Finální vyladění detailů)
+# 2. VLASTNÍ MODERNÍ DESIGN (Zůstává beze změny z verze 1.0)
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
@@ -26,7 +26,7 @@ h1, h2 {{
     font-weight: 800 !important;
 }}
 
-/* OPRAVA: Podnadpisy menší a bílé pro lepší orientaci */
+/* Podnadpisy menší a bílé */
 h3 {{
     color: #FFFFFF !important;
     font-weight: 700 !important;
@@ -43,7 +43,7 @@ p, label, div.stRadio > div {{
     font-weight: 500;
 }}
 
-/* OPRAVA: Provzdušnění odrážek (lepší čtení v provozu) */
+/* Provzdušnění odrážek */
 li {{
     color: #FFFFFF !important;
     font-size: 1.1rem;
@@ -52,12 +52,12 @@ li {{
     line-height: 1.5;
 }}
 
-/* OPRAVA: Větší mezery mezi přepínači (pro dotyk na mobilu) */
+/* Větší mezery mezi přepínači */
 div[role="radiogroup"] > label {{
     margin-bottom: 0.8rem !important;
 }}
 
-/* OPRAVA: Bílé odkazy s modrým podtržením (vylepšený hover efekt) */
+/* Bílé odkazy s modrým podtržením */
 a {{
     color: #FFFFFF !important;
     text-decoration: none !important;
@@ -79,11 +79,12 @@ div[data-testid="stVideo"] {{
 </style>
 """, unsafe_allow_html=True)
 
-# --- ZBYTEK TVÉ APLIKACE (beze změny textů, jen nový vzhled) ---
+# --- ZBYTEK TVÉ APLIKACE ---
 
 st.title("🎬 GoPro & DJI Asistent")
 st.write("Vyber si typ připojení zvuku, který jdeš zrovna zapojit, a já ti dám přesný návod.")
 
+# Hlavní rozdělení (Levý pro návod, Pravý pro tipy)
 levy_sloupec, pravy_sloupec = st.columns([3, 2], gap="large")
 
 with levy_sloupec:
@@ -98,7 +99,8 @@ with levy_sloupec:
     if scenar == "1. Připojení JEDNOHO mikrofonu (Napřímo přes Bluetooth)":
         st.header("🔵 Postup pro přímé Bluetooth spojení")
         
-        video_sl, text_sl = st.columns([1, 1.2], gap="medium")
+        # --- ZMĚNA: Poměr sloupců upraven ve prospěch videa [1.5, 1] ---
+        video_sl, text_sl = st.columns([1.5, 1], gap="medium")
         
         with video_sl:
             st.write("**Videonávod:**")
@@ -109,25 +111,26 @@ with levy_sloupec:
             st.markdown("""
             ### Příprava mikrofonu
             1. **Vyjmi mikrofon** z dokovací stanice DJI.
-            2. **Zkontroluj napájení:** Mikrofon musí být zapnutý (bliká zelené tlačítko).
+            2. **Zkontroluj napájení:** Zapnutý = bliká zelené tlačítko.
                * *Tip: Pokud nesvítí, zapni ho podržením červeného tlačítka.*
 
             ### Nastavení kamery
-            3. **Zapni kameru** stisknutím bočního tlačítka `MODE`.
+            3. **Zapni kameru** (tlačítko `MODE`).
             4. Na displeji **přejeď prstem seshora dolů**.
             5. Následně **přejeď prstem doleva**.
             6. Stiskni možnost **„Pair device“**.
 
             ### Samotné párování
-            7. Na mikrofonu **podrž tlačítko Link** na 3 vteřiny (bliká modro-zeleně).
+            7. Na mikrofonu **podrž tlačítko Link** (bliká modro-zeleně).
             8. Na displeji kamery se objeví **DJI Mic 3 TX**.
-            9. **Klikni na tento řádek.** Zařízení se úspěšně propojí.
+            9. **Klikni na tento řádek.**
             """)
 
     elif scenar == "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)":
         st.header("📡 Propojení kamery s Media Modem a přijímačem RX")
         
-        video_sl, text_sl = st.columns([1, 1.2], gap="medium")
+        # --- ZMĚNA: Poměr sloupců upraven ve prospěch videa [1.5, 1] ---
+        video_sl, text_sl = st.columns([1.5, 1], gap="medium")
         
         with video_sl:
             st.write("**Videonávod:**")
@@ -138,17 +141,17 @@ with levy_sloupec:
             ### Instalace Media Modu
             1. **Odstraň dvířka** kamery.
             2. **Otevři Media Mod**.
-            3. **Vlož kameru** do Media Modu.
+            3. **Vlož kameru** a propoj konektory.
             4. **Zavři Media Mod**.
 
             ### Příprava DJI přijímače
             5. **Vyjmi přijímač** z pouzdra.
-            6. **Potvrď informaci** s QR kódem na displeji (Confirm).
-            7. **Vyjmi oba mikrofony** a zkontroluj zelené diody.
+            6. **Potvrď informaci** s QR kódem (Confirm).
+            7. **Vyjmi oba mikrofony** (kontroluj zelené diody).
 
             ### Fyzické propojení
             8. **Nasuň přijímač** z boku Media Modu displejem k sobě.
-            9. **Zapoj kabel** do přijímače (konektor OUT).
+            9. **Zapoj kabel** do přijímače (OUT).
             10. **Zapoj kabel do kamery** (spodní vstup na Media Modu).
             11. **Zapni kameru**.
             """)
