@@ -18,18 +18,18 @@ st.markdown(f"""
 
 /* Tmavý, poloprůhledný podklad pod textem (Glassmorphism) */
 .block-container {{
-    background-color: rgba(15, 15, 15, 0.45); /* ZMĚNA: Větší průhlednost */
+    background-color: rgba(15, 15, 15, 0.65); /* ZMĚNA: Neprůhlednost zvýšena na 65 % */
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(2px); /* ZMĚNA: Menší rozmazání pozadí */
+    backdrop-filter: blur(2px);
 }}
 
 /* Změna barvy hlavních nadpisů na dynamickou "GoPro modrou" */
 h1, h2, h3 {{
     color: #00AEEF !important;
     font-weight: 800 !important;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); /* ZMĚNA: Černý stín pro lepší čitelnost */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
 }}
 
 /* Světlejší text pro lepší čitelnost na tmavém pozadí */
@@ -37,7 +37,7 @@ p, li, label, div.stRadio > div {{
     color: #FFFFFF !important;
     font-size: 1.1rem;
     font-weight: 500;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9); /* ZMĚNA: Černý stín pro lepší čitelnost */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
 }}
 
 /* Lehké zakulacení a stín pro samotná videa */
