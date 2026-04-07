@@ -129,4 +129,6 @@ with pravy_sloupec:
     st.markdown("""
     ---
     **Další užitečné odkazy:**
-    * 📄 [Kompletní manuál
+    * 📄 [Kompletní manuál k DJI Mic (PDF)](#)
+    * ⚙️ [Objednávka náhradních baterií (Intranet)](#)
+    """)
