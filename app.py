@@ -18,7 +18,7 @@ st.markdown(f"""
 
 /* Tmavý, poloprůhledný podklad pod textem (Glassmorphism) */
 .block-container {{
-    background-color: rgba(15, 15, 15, 0.65); /* ZMĚNA: Neprůhlednost zvýšena na 65 % */
+    background-color: rgba(15, 15, 15, 0.65); 
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
@@ -54,8 +54,8 @@ div[data-testid="stVideo"] {{
 st.title("🎬 GoPro & DJI Asistent")
 st.write("Vyber si typ připojení zvuku, který jdeš zrovna zapojit, a já ti dám přesný návod.")
 
-# Hlavní rozdělení obrazovky (Levý sloupec pro návod, Pravý pro tipy)
-levy_sloupec, pravy_sloupec = st.columns([2, 1], gap="large")
+# --- ZMĚNA: Úprava poměru sloupců pro širší pravý panel (poměr 3:2) ---
+levy_sloupec, pravy_sloupec = st.columns([3, 2], gap="large")
 
 # --- HLAVNÍ OBSAH (LEVÝ SLOUPEC) ---
 with levy_sloupec:
@@ -130,15 +130,12 @@ with pravy_sloupec:
     st.header("💡 Tipy a triky")
     st.markdown("*Užitečné rady pro natáčení na linkách.*")
     
-    mini_sl, prazdny_sl = st.columns([5, 1])
-    with mini_sl:
-        st.write("**Jak správně uchytit GoPro na rám stroje:**")
-        st.video("https://www.youtube.com/watch?v=9L9m5B8pXxE")
-        
-        st.write("**Jak nastavit expozici (obraz) v temné hale:**")
-        st.video("https://www.youtube.com/watch?v=9L9m5B8pXxE")
-
+    # --- ZMĚNA: Odstraněna videa, nahrazeno odkazy s ikonkami ---
     st.markdown("""
+    **🎥 Videonávody:**
+    * [Jak správně uchytit GoPro na rám stroje](https://www.youtube.com/watch?v=9L9m5B8pXxE)
+    * [Jak nastavit expozici (obraz) v temné hale](https://www.youtube.com/watch?v=9L9m5B8pXxE)
+    
     ---
     **Další užitečné odkazy:**
     * 📄 [Kompletní manuál k DJI Mic (PDF)](#)
