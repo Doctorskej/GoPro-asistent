@@ -18,23 +18,26 @@ st.markdown(f"""
 
 /* Tmavý, poloprůhledný podklad pod textem (Glassmorphism) */
 .block-container {{
-    background-color: rgba(15, 15, 15, 0.85); 
+    background-color: rgba(15, 15, 15, 0.45); /* ZMĚNA: Větší průhlednost */
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px); /* ZMĚNA: Menší rozmazání pozadí */
 }}
 
 /* Změna barvy hlavních nadpisů na dynamickou "GoPro modrou" */
 h1, h2, h3 {{
     color: #00AEEF !important;
     font-weight: 800 !important;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); /* ZMĚNA: Černý stín pro lepší čitelnost */
 }}
 
 /* Světlejší text pro lepší čitelnost na tmavém pozadí */
-p, li, label {{
-    color: #F0F0F0 !important;
+p, li, label, div.stRadio > div {{
+    color: #FFFFFF !important;
     font-size: 1.1rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9); /* ZMĚNA: Černý stín pro lepší čitelnost */
 }}
 
 /* Lehké zakulacení a stín pro samotná videa */
@@ -56,7 +59,6 @@ levy_sloupec, pravy_sloupec = st.columns([2, 1], gap="large")
 
 # --- HLAVNÍ OBSAH (LEVÝ SLOUPEC) ---
 with levy_sloupec:
-    # --- ZMĚNA ZDE: st.radio místo st.selectbox ---
     scenar = st.radio(
         "Co máš dnes v plánu?",
         (
