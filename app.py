@@ -121,11 +121,12 @@ with pravy_sloupec:
     st.markdown("*Užitečné rady pro natáčení na linkách.*")
     
     st.write("**Jak správně uchytit GoPro na rám stroje:**")
-    # Zde doplň reálný odkaz na video s ukázkou uchycení
     st.video("https://www.youtube.com/watch?v=9L9m5B8pXxE")
     
     st.write("**Jak nastavit expozici (obraz) v temné hale:**")
-    # Zde doplň reálný odkaz na video pro natáčení ve špatném světle
     st.video("https://www.youtube.com/watch?v=9L9m5B8pXxE")
 
     st.markdown("""
+    ---
+    **Další užitečné odkazy:**
+    * 📄 [Kompletní manuál
