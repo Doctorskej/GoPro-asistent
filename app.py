@@ -3,12 +3,12 @@ import streamlit as st
 # 1. NASTAVENÍ STRÁNKY
 st.set_page_config(page_title="GoPro & DJI Asistent", page_icon="🎬", layout="wide")
 
-# 2. VLASTNÍ MODERNÍ DESIGN (Opravený UX/UI)
+# 2. VLASTNÍ MODERNÍ DESIGN (Finální vyladění detailů)
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
 <style>
-/* OPRAVA 1: Dokonalé ztmavení celé fotky pomocí gradientu (čitelnost 100%) */
+/* Gradient přes fotku pro 100% čitelnost */
 .stApp {{
     background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url("{pozadi_url}");
     background-size: cover;
@@ -16,38 +16,61 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* Čistý kontejner bez dalších podkresů */
 .block-container {{
     padding: 3rem;
 }}
 
-/* OPRAVA 2: Čisté nadpisy (GoPro modrá, bez stínů) */
-h1, h2, h3 {{
+/* Vizuální hierarchie nadpisů */
+h1, h2 {{
     color: #00AEEF !important;
     font-weight: 800 !important;
-    text-shadow: none !important;
 }}
 
-/* OPRAVA 3: Čistý a ostrý bílý text (bez stínů) */
-p, li, label, div.stRadio > div {{
+/* OPRAVA: Podnadpisy menší a bílé pro lepší orientaci */
+h3 {{
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    margin-top: 1.5rem !important;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}}
+
+/* Obecný text */
+p, label, div.stRadio > div {{
     color: #FFFFFF !important;
     font-size: 1.1rem;
     font-weight: 500;
-    text-shadow: none !important;
 }}
 
-/* OPRAVA 4: Viditelné odkazy (Přebarvení defaultní HTML modré) */
+/* OPRAVA: Provzdušnění odrážek (lepší čtení v provozu) */
+li {{
+    color: #FFFFFF !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}}
+
+/* OPRAVA: Větší mezery mezi přepínači (pro dotyk na mobilu) */
+div[role="radiogroup"] > label {{
+    margin-bottom: 0.8rem !important;
+}}
+
+/* OPRAVA: Bílé odkazy s modrým podtržením (vylepšený hover efekt) */
 a {{
-    color: #00AEEF !important;
+    color: #FFFFFF !important;
     text-decoration: none !important;
+    border-bottom: 2px solid #00AEEF;
     font-weight: 600;
+    transition: all 0.3s ease;
 }}
 a:hover {{
-    color: #FFFFFF !important;
-    text-decoration: underline !important;
+    color: #00AEEF !important;
+    border-bottom: 2px solid #FFFFFF;
 }}
 
-/* Lehké zakulacení a stín pro samotná videa */
+/* Videa */
 div[data-testid="stVideo"] {{
     border-radius: 10px;
     overflow: hidden;
@@ -56,15 +79,13 @@ div[data-testid="stVideo"] {{
 </style>
 """, unsafe_allow_html=True)
 
-# --- ZBYTEK TVÉ APLIKACE ---
+# --- ZBYTEK TVÉ APLIKACE (beze změny textů, jen nový vzhled) ---
 
 st.title("🎬 GoPro & DJI Asistent")
 st.write("Vyber si typ připojení zvuku, který jdeš zrovna zapojit, a já ti dám přesný návod.")
 
-# Hlavní rozdělení obrazovky (Levý sloupec pro návod, Pravý pro tipy)
 levy_sloupec, pravy_sloupec = st.columns([3, 2], gap="large")
 
-# --- HLAVNÍ OBSAH (LEVÝ SLOUPEC) ---
 with levy_sloupec:
     scenar = st.radio(
         "Co máš dnes v plánu?",
@@ -81,24 +102,23 @@ with levy_sloupec:
         
         with video_sl:
             st.write("**Videonávod:**")
-            # Vyměněno za reálně fungující testovací GoPro video
             st.video("https://www.youtube.com/watch?v=LXb3EKWsInQ")
             st.markdown("*Ideální pro maximální minimalismus.*")
 
         with text_sl:
             st.markdown("""
-            ### Příprava mikrofonu:
+            ### Příprava mikrofonu
             1. **Vyjmi mikrofon** z dokovací stanice DJI.
             2. **Zkontroluj napájení:** Mikrofon musí být zapnutý (bliká zelené tlačítko).
                * *Tip: Pokud nesvítí, zapni ho podržením červeného tlačítka.*
 
-            ### Nastavení kamery:
+            ### Nastavení kamery
             3. **Zapni kameru** stisknutím bočního tlačítka `MODE`.
             4. Na displeji **přejeď prstem seshora dolů**.
             5. Následně **přejeď prstem doleva**.
             6. Stiskni možnost **„Pair device“**.
 
-            ### Samotné párování:
+            ### Samotné párování
             7. Na mikrofonu **podrž tlačítko Link** na 3 vteřiny (bliká modro-zeleně).
             8. Na displeji kamery se objeví **DJI Mic 3 TX**.
             9. **Klikni na tento řádek.** Zařízení se úspěšně propojí.
@@ -111,30 +131,28 @@ with levy_sloupec:
         
         with video_sl:
             st.write("**Videonávod:**")
-            # Vyměněno za reálně fungující testovací GoPro video
             st.video("https://www.youtube.com/watch?v=LXb3EKWsInQ")
 
         with text_sl:
             st.markdown("""
-            ### Instalace Media Modu:
+            ### Instalace Media Modu
             1. **Odstraň dvířka** kamery.
             2. **Otevři Media Mod**.
             3. **Vlož kameru** do Media Modu.
             4. **Zavři Media Mod**.
 
-            ### Příprava DJI přijímače:
+            ### Příprava DJI přijímače
             5. **Vyjmi přijímač** z pouzdra.
             6. **Potvrď informaci** s QR kódem na displeji (Confirm).
             7. **Vyjmi oba mikrofony** a zkontroluj zelené diody.
 
-            ### Fyzické propojení:
+            ### Fyzické propojení
             8. **Nasuň přijímač** z boku Media Modu displejem k sobě.
             9. **Zapoj kabel** do přijímače (konektor OUT).
             10. **Zapoj kabel do kamery** (spodní vstup na Media Modu).
             11. **Zapni kameru**.
             """)
 
-# --- TIPY A TRIKY (PRAVÝ SLOUPEC) ---
 with pravy_sloupec:
     st.header("💡 Tipy a triky")
     st.markdown("*Užitečné rady pro natáčení na linkách.*")
