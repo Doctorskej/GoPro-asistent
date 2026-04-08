@@ -111,6 +111,19 @@ div[data-testid="stVideo"], iframe {{
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     width: 100% !important;
 }}
+
+/* Úprava designu tlačítek pro stažení PDF */
+button[data-testid="baseButton-secondary"] {{
+    background-color: rgba(0, 174, 239, 0.1) !important;
+    border: 1px solid #00AEEF !important;
+    color: #FFFFFF !important;
+    width: 100%;
+    margin-bottom: 10px;
+}}
+button[data-testid="baseButton-secondary"]:hover {{
+    background-color: rgba(0, 174, 239, 0.3) !important;
+    border: 1px solid #FFFFFF !important;
+}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -192,6 +205,30 @@ with pravy_sloupec:
     
     ---
     **📚 Manuály:**
-    * 📄 [Manuál ke GoPro 13 (PDF)](GoPro13%20manual.pdf)
-    * 📄 [Manuál k DJI Mic 3 (PDF)](DJI_Mic_3_User_Manual_CS%20(1).pdf)
     """)
+    
+    # --- NOVÉ: Streamlit tlačítka pro stahování ---
+    
+    # Manuál GoPro
+    try:
+        with open("GoPro13 manual.pdf", "rb") as pdf_file:
+            st.download_button(
+                label="📄 Stáhnout manuál GoPro 13",
+                data=pdf_file,
+                file_name="GoPro13_manual.pdf",
+                mime="application/pdf"
+            )
+    except FileNotFoundError:
+        st.error("Soubor s manuálem GoPro na GitHubu chybí.")
+
+    # Manuál DJI Mic
+    try:
+        with open("DJI_Mic_3_User_Manual_CS (1).pdf", "rb") as pdf_file:
+            st.download_button(
+                label="📄 Stáhnout manuál DJI Mic 3",
+                data=pdf_file,
+                file_name="DJI_Mic_3_manual.pdf",
+                mime="application/pdf"
+            )
+    except FileNotFoundError:
+        st.error("Soubor s manuálem DJI na GitHubu chybí.")
