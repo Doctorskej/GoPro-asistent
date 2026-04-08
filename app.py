@@ -1,9 +1,9 @@
 import streamlit as st
 
-# 1. NASTAVENÍ STRÁNKY
-st.set_page_config(page_title="GoPro Asistent", page_icon="🎬", layout="wide")
+# 1. NASTAVENÍ STRÁNKY (Nová cool ikona videokamery)
+st.set_page_config(page_title="GoPro Asistent", page_icon=":material/videocam:", layout="wide")
 
-# 2. VLASTNÍ MODERNÍ DESIGN
+# 2. VLASTNÍ MODERNÍ DESIGN (Zůstává beze změny z verze 1.0)
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
@@ -26,7 +26,7 @@ h1, h2 {{
     font-weight: 800 !important;
 }}
 
-/* Podnadpisy */
+/* Podnadpisy menší a bílé */
 h3 {{
     color: #FFFFFF !important;
     font-weight: 700 !important;
@@ -37,50 +37,11 @@ h3 {{
 }}
 
 /* Obecný text */
-p, label {{
+p, label, div.stRadio > div {{
     color: #FFFFFF !important;
     font-size: 1.1rem;
     font-weight: 500;
 }}
-
-/* --------------------------------------------------- */
-/* DEFINITIVNÍ VYMAZÁNÍ ČERVENÝCH PUNTÍKŮ              */
-/* --------------------------------------------------- */
-
-/* Úplné skrytí grafického puntíku před textem */
-div[data-testid="stRadio"] label > div:first-child {{
-    display: none !important;
-}}
-
-/* Základní vzhled neaktivní karty */
-div[data-testid="stRadio"] label {{
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 174, 239, 0.3);
-    padding: 12px 20px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    width: 100%;
-}}
-
-/* Vzhled karty, když na ni jen najedeš myší */
-div[data-testid="stRadio"] label:hover {{
-    background-color: rgba(0, 174, 239, 0.15) !important;
-    border-color: #00AEEF !important;
-}}
-
-/* Vzhled VYBRANÉ karty (rozsvítí se modře) */
-div[data-testid="stRadio"] label:has(input[type="radio"]:checked) {{
-    background-color: rgba(0, 174, 239, 0.3) !important;
-    border: 2px solid #00AEEF !important;
-    box-shadow: 0 0 15px rgba(0, 174, 239, 0.4);
-}}
-
-div[role="radiogroup"] {{
-    gap: 10px;
-}}
-/* --------------------------------------------------- */
 
 /* Provzdušnění odrážek */
 li {{
@@ -91,7 +52,12 @@ li {{
     line-height: 1.5;
 }}
 
-/* Odkazy */
+/* Větší mezery mezi přepínači */
+div[role="radiogroup"] > label {{
+    margin-bottom: 0.8rem !important;
+}}
+
+/* Bílé odkazy s modrým podtržením */
 a {{
     color: #FFFFFF !important;
     text-decoration: none !important;
@@ -104,96 +70,72 @@ a:hover {{
     border-bottom: 2px solid #FFFFFF;
 }}
 
-/* Videa, vložené iFramy a Obrázky */
-div[data-testid="stVideo"], iframe, img {{
+/* Videa */
+div[data-testid="stVideo"] {{
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    width: 100% !important;
-}}
-
-/* Vytvoření čitelných tlačítek-karet pro manuály */
-.manual-card {{
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 174, 239, 0.3);
-    padding: 1rem;
-    border-radius: 10px;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: left;
-    outline: none;
-}}
-.manual-card:hover {{
-    background-color: rgba(0, 174, 239, 0.1) !important;
-    border: 1px solid #FFFFFF !important;
-}}
-.manual-card-icon {{
-    font-size: 1.5rem;
-    margin-right: 10px;
-    color: #FFFFFF;
-}}
-.manual-card-text {{
-    color: #FFFFFF !important;
-    font-size: 1.1rem;
-    font-weight: 500;
 }}
 </style>
 """, unsafe_allow_html=True)
 
-# --- HLAVNÍ OBSAH ---
+# --- ZBYTEK TVÉ APLIKACE ---
 
-st.title("🎬 GoPro Asistent")
-st.write("Vyber si typ připojení:")
+st.title("🎬 GoPro & DJI Asistent")
+st.write("Vyber si typ připojení zvuku, který jdeš zrovna zapojit, a já ti dám přesný návod.")
 
+# Hlavní rozdělení (Levý pro návod, Pravý pro tipy)
 levy_sloupec, pravy_sloupec = st.columns([3, 2], gap="large")
 
 with levy_sloupec:
     scenar = st.radio(
-        "label_hidden",
+        "Co máš dnes v plánu?",
         (
             "1. Připojení JEDNOHO mikrofonu (Napřímo přes Bluetooth)",
             "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)",
             "3. Fast manual propojení (Rychlý obrázkový tahák)"
-        ),
-        label_visibility="collapsed"
+        )
     )
 
     if scenar == "1. Připojení JEDNOHO mikrofonu (Napřímo přes Bluetooth)":
         st.header("🔵 Postup pro přímé Bluetooth spojení")
         
+        # Poměr sloupců upraven ve prospěch videa [1.5, 1]
         video_sl, text_sl = st.columns([1.5, 1], gap="medium")
         
         with video_sl:
             st.write("**Videonávod:**")
             st.video("https://www.youtube.com/watch?v=LXb3EKWsInQ")
+            st.markdown("*Ideální pro maximální minimalismus.*")
 
         with text_sl:
             st.markdown("""
             ### Příprava mikrofonu
             1. **Vyjmi mikrofon** z dokovací stanice DJI.
             2. **Zkontroluj napájení:** Zapnutý = bliká zelené tlačítko.
-            
+               * *Tip: Pokud nesvítí, zapni ho podržením červeného tlačítka.*
+
             ### Nastavení kamery
-            3. **Zapni kameru** (boční tlačítko `MODE`).
-            4. **Přejeď prstem dolů** a pak **doleva**.
-            5. Stiskni **„Pair device“**.
+            3. **Zapni kameru** (tlačítko `MODE`).
+            4. Na displeji **přejeď prstem seshora dolů**.
+            5. Následně **přejeď prstem doleva**.
+            6. Stiskni možnost **„Pair device“**.
 
             ### Samotné párování
-            6. Na mikrofonu **podrž tlačítko Link**.
-            7. Na displeji kamery klikni na **DJI Mic 3 TX**.
+            7. Na mikrofonu **podrž tlačítko Link** (bliká modro-zeleně).
+            8. Na displeji kamery se objeví **DJI Mic 3 TX**.
+            9. **Klikni na tento řádek.**
             """)
 
     elif scenar == "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)":
         st.header("📡 Propojení kamery s Media Modem a přijímačem RX")
         
+        # Poměr sloupců upraven ve prospěch videa [1.5, 1]
         video_sl, text_sl = st.columns([1.5, 1], gap="medium")
         
         with video_sl:
             st.write("**Videonávod:**")
+            # --- ZDE JE TVŮJ NOVÝ ODKAZ Z SHAREPOINTU ---
             st.markdown("""
             <iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=061cd250-a744-4be2-8bd8-d404aed6f8d8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="100%" height="360" frameborder="0" scrolling="no" allowfullscreen title="GoPro přijímač.mp4"></iframe>
             """, unsafe_allow_html=True)
@@ -202,58 +144,26 @@ with levy_sloupec:
             st.markdown("""
             ### Instalace Media Modu
             1. **Odstraň dvířka** kamery.
-            2. **Vlož kameru** do Media Modu.
-            3. **Zavři Media Mod**.
+            2. **Otevři Media Mod**.
+            3. **Vlož kameru** a propoj konektory.
+            4. **Zavři Media Mod**.
 
             ### Příprava DJI přijímače
-            4. **Vyjmi přijímač** z pouzdra.
-            5. **Potvrď informaci** na displeji (Confirm).
-            
-            ### Fyzické propojení
-            6. **Nasuň přijímač** na Media Mod.
-            7. **Zapoj kabel** do přijímače (OUT) a do kamery.
-            """)
+            5. **Vyjmi přijímač** z pouzdra.
+            6. **Potvrď informaci** s QR kódem (Confirm).
+            7. **Vyjmi oba mikrofony** (kontroluj zelené diody).
 
+            ### Fyzické propojení
+            8. **Nasuň přijímač** z boku Media Modu displejem k sobě.
+            9. **Zapoj kabel** do přijímače (OUT).
+            10. **Zapoj kabel do kamery** (spodní vstup na Media Modu).
+            11. **Zapni kameru**.
+            """)
+            
     # --- NOVÁ SEKCE PRO FAST MANUAL ---
     elif scenar == "3. Fast manual propojení (Rychlý obrázkový tahák)":
         st.header("⚡ Fast manual propojení")
         st.markdown("*Rychlý přehled pro zapojení bez zbytečných řečí. Kliknutím na obrázek si ho můžeš zvětšit.*")
         
         # Surový (raw) odkaz na tvůj obrázek na GitHubu
-        raw_image_url = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro%20propojen%C3%AD.png"
-        st.image(raw_image_url, use_container_width=True)
-
-with pravy_sloupec:
-    st.header("💡 Tipy a triky")
-    st.markdown("""
-    **🎥 Videonávody:**
-    * [Jak správně uchytit GoPro na rám stroje](https://www.youtube.com/watch?v=LXb3EKWsInQ)
-    * [Jak nastavit expozici v temné hale](https://www.youtube.com/watch?v=LXb3EKWsInQ)
-    
-    ---
-    **📚 Manuály:**
-    """)
-    
-    # Přímé RAW odkazy na GitHub
-    url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
-    url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
-    
-    # Karta pro GoPro manuál
-    st.markdown(f"""
-    <a href="{url_gopro}" target="_blank" style="text-decoration: none; width: 100%;">
-        <div class="manual-card">
-            <span class="manual-card-icon">📄</span>
-            <span class="manual-card-text">Otevřít manuál k GoPro 13 (v novém okně)</span>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-
-    # Karta pro DJI manuál
-    st.markdown(f"""
-    <a href="{url_dji}" target="_blank" style="text-decoration: none; width: 100%;">
-        <div class="manual-card">
-            <span class="manual-card-icon">📄</span>
-            <span class="manual-card-text">Otevřít manuál k DJI Mic 3 (v novém okně)</span>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
+        raw_image_url = "
