@@ -1,6 +1,6 @@
 import streamlit as st
 
-# 1. NASTAVENÍ STRÁNKY (Nová cool ikona videokamery v záložce)
+# 1. NASTAVENÍ STRÁNKY
 st.set_page_config(page_title="GoPro Asistent", page_icon=":material/videocam:", layout="wide")
 
 # 2. VLASTNÍ MODERNÍ DESIGN
@@ -91,7 +91,7 @@ li {{
     line-height: 1.5;
 }}
 
-/* Odkazy */
+/* Odkazy (běžné v textu) */
 a {{
     color: #FFFFFF !important;
     text-decoration: none !important;
@@ -102,6 +102,14 @@ a {{
 a:hover {{
     color: #00AEEF !important;
     border-bottom: 2px solid #FFFFFF;
+}}
+
+/* OPRAVA: Vypnutí podtrhávání u automatických odkazů vedle nadpisů */
+h1 a, h2 a, h3 a {{
+    border-bottom: none !important;
+}}
+h1 a:hover, h2 a:hover, h3 a:hover {{
+    border-bottom: none !important;
 }}
 
 /* Videa, vložené iFramy a Obrázky */
@@ -146,14 +154,12 @@ div[data-testid="stVideo"], iframe, img {{
 
 # --- HLAVNÍ OBSAH ---
 
-# TADY JE TA NOVÁ KAMERA
 st.title("📹 GoPro Asistent")
 st.write("Vyber si typ připojení:")
 
 levy_sloupec, pravy_sloupec = st.columns([3, 2], gap="large")
 
 with levy_sloupec:
-    # A TADY JE ZPÁTKY TO SPRÁVNÉ NASTAVENÍ BEZ PUNTÍKŮ
     scenar = st.radio(
         "label_hidden",
         (
@@ -220,7 +226,6 @@ with levy_sloupec:
         st.header("⚡ Fast manual propojení")
         st.markdown("*Rychlý přehled pro zapojení bez zbytečných řečí. Kliknutím na obrázek si ho můžeš zvětšit.*")
         
-        # Surový (raw) odkaz na tvůj obrázek na GitHubu
         raw_image_url = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro%20propojen%C3%AD.png"
         st.image(raw_image_url, use_container_width=True)
 
@@ -235,11 +240,9 @@ with pravy_sloupec:
     **📚 Manuály:**
     """)
     
-    # Přímé RAW odkazy na GitHub
     url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
     url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
     
-    # Karta pro GoPro manuál
     st.markdown(f"""
     <a href="{url_gopro}" target="_blank" style="text-decoration: none; width: 100%;">
         <div class="manual-card">
@@ -249,7 +252,6 @@ with pravy_sloupec:
     </a>
     """, unsafe_allow_html=True)
 
-    # Karta pro DJI manuál
     st.markdown(f"""
     <a href="{url_dji}" target="_blank" style="text-decoration: none; width: 100%;">
         <div class="manual-card">
