@@ -44,15 +44,15 @@ p, label {{
 }}
 
 /* --------------------------------------------------- */
-/* NOVÝ HACK NA ZNIČENÍ ČERVENÝCH PUNTÍKŮ              */
+/* DEFINITIVNÍ VYMAZÁNÍ ČERVENÝCH PUNTÍKŮ              */
 /* --------------------------------------------------- */
 
-/* 1. Úplně skryjeme ten otravný vykreslený puntík (SVG) */
-div[data-testid="stRadio"] svg {{
+/* Úplné skrytí grafického puntíku před textem */
+div[data-testid="stRadio"] label > div:first-child {{
     display: none !important;
 }}
 
-/* 2. Základní vzhled neaktivní karty */
+/* Základní vzhled neaktivní karty */
 div[data-testid="stRadio"] label {{
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(0, 174, 239, 0.3);
@@ -61,15 +61,16 @@ div[data-testid="stRadio"] label {{
     margin-bottom: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
+    width: 100%;
 }}
 
-/* 3. Vzhled karty, když na ni jen najedeš myší */
+/* Vzhled karty, když na ni jen najedeš myší */
 div[data-testid="stRadio"] label:hover {{
     background-color: rgba(0, 174, 239, 0.15) !important;
     border-color: #00AEEF !important;
 }}
 
-/* 4. MAGIE: Vzhled karty, když je VYBRANÁ (rozsvítí se modře) */
+/* Vzhled VYBRANÉ karty (rozsvítí se modře) */
 div[data-testid="stRadio"] label:has(input[type="radio"]:checked) {{
     background-color: rgba(0, 174, 239, 0.3) !important;
     border: 2px solid #00AEEF !important;
@@ -103,11 +104,12 @@ a:hover {{
     border-bottom: 2px solid #FFFFFF;
 }}
 
-/* Videa */
+/* Videa a vložené iFramy (SharePoint) */
 div[data-testid="stVideo"], iframe {{
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: 100% !important;
 }}
 </style>
 """, unsafe_allow_html=True)
@@ -161,7 +163,10 @@ with levy_sloupec:
         
         with video_sl:
             st.write("**Videonávod:**")
-            st.video("https://youtu.be/2fdjLctioTs")
+            # Tady je vložen tvůj firemní SharePoint kód s dynamickou šířkou 100%
+            st.markdown("""
+            <iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=061cd250-a744-4be2-8bd8-d404aed6f8d8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="100%" height="360" frameborder="0" scrolling="no" allowfullscreen title="GoPro přijímač.mp4"></iframe>
+            """, unsafe_allow_html=True)
 
         with text_sl:
             st.markdown("""
