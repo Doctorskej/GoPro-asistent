@@ -163,7 +163,6 @@ with levy_sloupec:
         
         with video_sl:
             st.write("**Videonávod:**")
-            # Tady je vložen tvůj firemní SharePoint kód s dynamickou šířkou 100%
             st.markdown("""
             <iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=061cd250-a744-4be2-8bd8-d404aed6f8d8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="100%" height="360" frameborder="0" scrolling="no" allowfullscreen title="GoPro přijímač.mp4"></iframe>
             """, unsafe_allow_html=True)
@@ -192,7 +191,7 @@ with pravy_sloupec:
     * [Jak nastavit expozici v temné hale](https://www.youtube.com/watch?v=LXb3EKWsInQ)
     
     ---
-    **Další užitečné odkazy:**
-    * 📄 [Kompletní manuál k DJI Mic (PDF)](#)
-    * ⚙️ [Objednávka náhradních baterií (Intranet)](#)
+    **📚 Manuály:**
+    * 📄 [Manuál ke GoPro 13 (PDF)](GoPro13%20manual.pdf)
+    * 📄 [Manuál k DJI Mic 3 (PDF)](DJI_Mic_3_User_Manual_CS%20(1).pdf)
     """)
