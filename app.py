@@ -104,8 +104,8 @@ a:hover {{
     border-bottom: 2px solid #FFFFFF;
 }}
 
-/* Videa a vložené iFramy (SharePoint) */
-div[data-testid="stVideo"], iframe {{
+/* Videa, vložené iFramy a Obrázky */
+div[data-testid="stVideo"], iframe, img {{
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
@@ -156,7 +156,8 @@ with levy_sloupec:
         "label_hidden",
         (
             "1. Připojení JEDNOHO mikrofonu (Napřímo přes Bluetooth)",
-            "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)"
+            "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)",
+            "3. Fast manual propojení (Rychlý obrázkový tahák)"
         ),
         label_visibility="collapsed"
     )
@@ -213,6 +214,15 @@ with levy_sloupec:
             7. **Zapoj kabel** do přijímače (OUT) a do kamery.
             """)
 
+    # --- NOVÁ SEKCE PRO FAST MANUAL ---
+    elif scenar == "3. Fast manual propojení (Rychlý obrázkový tahák)":
+        st.header("⚡ Fast manual propojení")
+        st.markdown("*Rychlý přehled pro zapojení bez zbytečných řečí. Kliknutím na obrázek si ho můžeš zvětšit.*")
+        
+        # Surový (raw) odkaz na tvůj obrázek na GitHubu
+        raw_image_url = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro%20propojen%C3%AD.png"
+        st.image(raw_image_url, use_container_width=True)
+
 with pravy_sloupec:
     st.header("💡 Tipy a triky")
     st.markdown("""
@@ -233,7 +243,7 @@ with pravy_sloupec:
     <a href="{url_gopro}" target="_blank" style="text-decoration: none; width: 100%;">
         <div class="manual-card">
             <span class="manual-card-icon">📄</span>
-            <span class="manual-card-text">Otevřít manuál k GoPro 13</span>
+            <span class="manual-card-text">Otevřít manuál k GoPro 13 (v novém okně)</span>
         </div>
     </a>
     """, unsafe_allow_html=True)
@@ -243,7 +253,7 @@ with pravy_sloupec:
     <a href="{url_dji}" target="_blank" style="text-decoration: none; width: 100%;">
         <div class="manual-card">
             <span class="manual-card-icon">📄</span>
-            <span class="manual-card-text">Otevřít manuál k DJI Mic 3</span>
+            <span class="manual-card-text">Otevřít manuál k DJI Mic 3 (v novém okně)</span>
         </div>
     </a>
     """, unsafe_allow_html=True)
