@@ -166,4 +166,40 @@ with levy_sloupec:
         st.markdown("*Rychlý přehled pro zapojení bez zbytečných řečí. Kliknutím na obrázek si ho můžeš zvětšit.*")
         
         # Surový (raw) odkaz na tvůj obrázek na GitHubu
-        raw_image_url = "
+        raw_image_url = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro%20propojen%C3%AD.png"
+        st.image(raw_image_url, use_container_width=True)
+
+with pravy_sloupec:
+    st.header("💡 Tipy a triky")
+    st.markdown("""
+    **🎥 Videonávody:**
+    * [Jak správně uchytit GoPro na rám stroje](https://www.youtube.com/watch?v=LXb3EKWsInQ)
+    * [Jak nastavit expozici v temné hale](https://www.youtube.com/watch?v=LXb3EKWsInQ)
+    
+    ---
+    **📚 Manuály:**
+    """)
+    
+    # Přímé RAW odkazy na GitHub
+    url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
+    url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
+    
+    # Karta pro GoPro manuál
+    st.markdown(f"""
+    <a href="{url_gopro}" target="_blank" style="text-decoration: none; width: 100%;">
+        <div class="manual-card">
+            <span class="manual-card-icon">📄</span>
+            <span class="manual-card-text">Otevřít manuál k GoPro 13 (v novém okně)</span>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+
+    # Karta pro DJI manuál
+    st.markdown(f"""
+    <a href="{url_dji}" target="_blank" style="text-decoration: none; width: 100%;">
+        <div class="manual-card">
+            <span class="manual-card-icon">📄</span>
+            <span class="manual-card-text">Otevřít manuál k DJI Mic 3 (v novém okně)</span>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
