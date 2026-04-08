@@ -112,17 +112,34 @@ div[data-testid="stVideo"], iframe {{
     width: 100% !important;
 }}
 
-/* Úprava designu tlačítek pro stažení PDF */
-button[data-testid="baseButton-secondary"] {{
-    background-color: rgba(0, 174, 239, 0.1) !important;
-    border: 1px solid #00AEEF !important;
-    color: #FFFFFF !important;
+/* Vytvoření čitelných tlačítek-karet pro manuály */
+.manual-card {{
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 174, 239, 0.3);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
     width: 100%;
-    margin-bottom: 10px;
+    text-align: left;
+    outline: none;
 }}
-button[data-testid="baseButton-secondary"]:hover {{
-    background-color: rgba(0, 174, 239, 0.3) !important;
+.manual-card:hover {{
+    background-color: rgba(0, 174, 239, 0.1) !important;
     border: 1px solid #FFFFFF !important;
+}}
+.manual-card-icon {{
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: #FFFFFF;
+}}
+.manual-card-text {{
+    color: #FFFFFF !important;
+    font-size: 1.1rem;
+    font-weight: 500;
 }}
 </style>
 """, unsafe_allow_html=True)
@@ -207,28 +224,26 @@ with pravy_sloupec:
     **📚 Manuály:**
     """)
     
-    # --- NOVÉ: Streamlit tlačítka pro stahování ---
+    # Přímé RAW odkazy na GitHub
+    url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
+    url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
     
-    # Manuál GoPro
-    try:
-        with open("GoPro13 manual.pdf", "rb") as pdf_file:
-            st.download_button(
-                label="📄 Stáhnout manuál GoPro 13",
-                data=pdf_file,
-                file_name="GoPro13_manual.pdf",
-                mime="application/pdf"
-            )
-    except FileNotFoundError:
-        st.error("Soubor s manuálem GoPro na GitHubu chybí.")
+    # Karta pro GoPro manuál
+    st.markdown(f"""
+    <a href="{url_gopro}" target="_blank" style="text-decoration: none; width: 100%;">
+        <div class="manual-card">
+            <span class="manual-card-icon">📄</span>
+            <span class="manual-card-text">Otevřít manuál k GoPro 13 (v novém okně)</span>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
 
-    # Manuál DJI Mic
-    try:
-        with open("DJI_Mic_3_User_Manual_CS (1).pdf", "rb") as pdf_file:
-            st.download_button(
-                label="📄 Stáhnout manuál DJI Mic 3",
-                data=pdf_file,
-                file_name="DJI_Mic_3_manual.pdf",
-                mime="application/pdf"
-            )
-    except FileNotFoundError:
-        st.error("Soubor s manuálem DJI na GitHubu chybí.")
+    # Karta pro DJI manuál
+    st.markdown(f"""
+    <a href="{url_dji}" target="_blank" style="text-decoration: none; width: 100%;">
+        <div class="manual-card">
+            <span class="manual-card-icon">📄</span>
+            <span class="manual-card-text">Otevřít manuál k DJI Mic 3 (v novém okně)</span>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
