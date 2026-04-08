@@ -43,29 +43,43 @@ p, label {{
     font-weight: 500;
 }}
 
-/* OPRAVA: Odstranění červené barvy a úprava radio buttonů na modré karty */
+/* --------------------------------------------------- */
+/* NOVÝ HACK NA ZNIČENÍ ČERVENÝCH PUNTÍKŮ              */
+/* --------------------------------------------------- */
+
+/* 1. Úplně skryjeme ten otravný vykreslený puntík (SVG) */
+div[data-testid="stRadio"] svg {{
+    display: none !important;
+}}
+
+/* 2. Základní vzhled neaktivní karty */
 div[data-testid="stRadio"] label {{
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(0, 174, 239, 0.3);
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 10px;
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }}
 
+/* 3. Vzhled karty, když na ni jen najedeš myší */
 div[data-testid="stRadio"] label:hover {{
-    background-color: rgba(0, 174, 239, 0.1);
-    border-color: #00AEEF;
+    background-color: rgba(0, 174, 239, 0.15) !important;
+    border-color: #00AEEF !important;
 }}
 
-/* Skrytí původního malého kroužku a nahrazení modrým zvýrazněním celého pole */
-div[data-testid="stRadio"] input[type="radio"]:checked + div {{
-    background-color: #00AEEF !important;
+/* 4. MAGIE: Vzhled karty, když je VYBRANÁ (rozsvítí se modře) */
+div[data-testid="stRadio"] label:has(input[type="radio"]:checked) {{
+    background-color: rgba(0, 174, 239, 0.3) !important;
+    border: 2px solid #00AEEF !important;
+    box-shadow: 0 0 15px rgba(0, 174, 239, 0.4);
 }}
 
 div[role="radiogroup"] {{
     gap: 10px;
 }}
+/* --------------------------------------------------- */
 
 /* Provzdušnění odrážek */
 li {{
@@ -106,7 +120,6 @@ st.write("Vyber si typ připojení:")
 levy_sloupec, pravy_sloupec = st.columns([3, 2], gap="large")
 
 with levy_sloupec:
-    # label_visibility="collapsed" skryje ten nadbytečný text nad výběrem
     scenar = st.radio(
         "label_hidden",
         (
@@ -148,7 +161,6 @@ with levy_sloupec:
         
         with video_sl:
             st.write("**Videonávod:**")
-            # Zde vložíš svůj iframe kód z Edgi/Sharepointu nebo st.video link
             st.video("https://youtu.be/2fdjLctioTs")
 
         with text_sl:
