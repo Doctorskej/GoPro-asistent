@@ -3,7 +3,7 @@ import streamlit as st
 # 1. NASTAVENÍ STRÁNKY
 st.set_page_config(page_title="GoPro & DJI Asistent", page_icon="🎬", layout="wide")
 
-# 2. VLASTNÍ MODERNÍ DESIGN (Zůstává beze změny z verze 1.0)
+# 2. VLASTNÍ MODERNÍ DESIGN
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
@@ -99,7 +99,6 @@ with levy_sloupec:
     if scenar == "1. Připojení JEDNOHO mikrofonu (Napřímo přes Bluetooth)":
         st.header("🔵 Postup pro přímé Bluetooth spojení")
         
-        # --- ZMĚNA: Poměr sloupců upraven ve prospěch videa [1.5, 1] ---
         video_sl, text_sl = st.columns([1.5, 1], gap="medium")
         
         with video_sl:
@@ -129,12 +128,12 @@ with levy_sloupec:
     elif scenar == "2. Připojení BEZDRÁTOVÉHO PŘIJÍMAČE (Celý DJI set s kabelem)":
         st.header("📡 Propojení kamery s Media Modem a přijímačem RX")
         
-        # --- ZMĚNA: Poměr sloupců upraven ve prospěch videa [1.5, 1] ---
         video_sl, text_sl = st.columns([1.5, 1], gap="medium")
         
         with video_sl:
             st.write("**Videonávod:**")
-            st.video("https://www.youtube.com/watch?v=LXb3EKWsInQ")
+            # --- ZDE JE TVŮJ NOVÝ ODKAZ ---
+            st.video("https://youtu.be/2fdjLctioTs")
 
         with text_sl:
             st.markdown("""
