@@ -233,7 +233,7 @@ with pravy_sloupec:
     <a href="{url_gopro}" target="_blank" style="text-decoration: none; width: 100%;">
         <div class="manual-card">
             <span class="manual-card-icon">📄</span>
-            <span class="manual-card-text">Otevřít manuál k GoPro 13 (v novém okně)</span>
+            <span class="manual-card-text">Otevřít manuál k GoPro 13</span>
         </div>
     </a>
     """, unsafe_allow_html=True)
@@ -243,7 +243,7 @@ with pravy_sloupec:
     <a href="{url_dji}" target="_blank" style="text-decoration: none; width: 100%;">
         <div class="manual-card">
             <span class="manual-card-icon">📄</span>
-            <span class="manual-card-text">Otevřít manuál k DJI Mic 3 (v novém okně)</span>
+            <span class="manual-card-text">Otevřít manuál k DJI Mic 3</span>
         </div>
     </a>
     """, unsafe_allow_html=True)
