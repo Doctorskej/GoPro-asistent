@@ -7,7 +7,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CSS - MAXIMÁLNÍ KONTRAST TEXTU ====================
+# ==================== CSS - KONTRAST A STABILNÍ BARVY ====================
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
@@ -38,9 +38,9 @@ st.markdown(f"""
         border: 2px solid #00AEEF !important;
     }}
 
-    /* 3. HLAVNÍ KARTY (Tady sedí tvůj postup) */
+    /* 3. HLAVNÍ KARTY */
     .glass-card {{
-        background: rgba(0, 0, 0, 0.65) !important; /* Tmavší podklad pro bílý text */
+        background: rgba(0, 0, 0, 0.65) !important;
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 18px;
@@ -48,11 +48,11 @@ st.markdown(f"""
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
     }}
 
-    /* 4. OPRAVA VIDITELNOSTI TEXTU - Bílá + stín */
+    /* 4. VIDITELNOST TEXTU - Bílá + stín */
     p, li, [data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] li {{
         color: #FFFFFF !important;
         font-weight: 500 !important;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.8) !important; /* Stín pod písmenem */
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.8) !important;
         line-height: 1.6;
     }}
 
@@ -62,7 +62,7 @@ st.markdown(f"""
         text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
     }}
 
-    /* 5. EXPANDÉRY - Fix barev (při najetí i odjezdu) */
+    /* 5. EXPANDÉRY - Fix barev proti problikávání */
     div[data-testid="stExpander"] {{
         background-color: rgba(255, 255, 255, 0.05) !important;
         border: 1px solid rgba(0, 174, 239, 0.5) !important;
@@ -149,17 +149,36 @@ col_left, col_right = st.columns([3, 2], gap="large")
 
 with col_right:
     st.header("💡 Tipy a řešení")
-    with st.expander("📸 Doporučené průmyslové profily"):
+    
+    # TVŮJ DETAILNÍ TEXT VLOŽEN SEM:
+    with st.expander("📸 Doporučené průmyslové profily (GoPro Hero 13)"):
         st.markdown("""
-        * **Celkové záběry:** 4K / 30 FPS, Čočka: Wide.
-        * **Technický detail:** Čočka: **LINEAR** (rovné hrany), Horizon Lock zapnut.
-        * **Špatné světlo:** 24 FPS, ISO Max 1600.
+        **1. Celkové záběry linky / pracoviště** Vhodné pro analýzu toku materiálu, pohybu operátorů nebo prostorové uspořádání.
+        * **Rozlišení:** 4K (ideální poměr kvality a velikosti souboru pro firemní síť).
+        * **Snímková frekvence (FPS):** 30 (plynulý, přirozený obraz).
+        * **Čočka (Lens):** Wide (Široká) – aby bylo vidět celé zařízení i okolní prostor.
+        * **Stabilizace (Hypersmooth):** AutoBoost (vynikající pro natáčení za chůze podél linky).
+        * **Barvy:** Natural (věrné podání barev pro identifikaci komponent).
+
+        **2. Technický detail a údržba (Makro)** Klíčové pro natáčení servisních úkonů, zapojování konektorů nebo čtení štítků.
+        * **Rozlišení:** 4K.
+        * **FPS:** 30.
+        * **Čočka (Lens):** Linear (Lineární) – **Zcela zásadní!** Odstraní zkreslení "rybího oka". Hrany strojů a nosníky budou rovné, což usnadňuje orientaci v prostoru.
+        * **Horizon Lock:** Zapnuto. I když se s kamerou nakloníš do útrob stroje, obraz zůstane vodorovně.
+        * **Barvy:** Vibrant (Zvýrazní barevné kódování kabelů, diody a bezpečnostní prvky).
+
+        **3. Inspekce v temných prostorech** Uvnitř strojních skříní, pod dopravníky nebo v revizních šachtách.
+        * **FPS:** 24 (nižší frekvence dovolí čipu "nasát" více světla z LED svítilen).
+        * **ISO Max:** 1600 (vyšší hodnota zajistí viditelnost v šeru, ale s minimálním zrněním).
+        * **Ostrost (Sharpness):** Medium (při slabém světle vypadá obraz přirozeněji).
+        * **Stabilizace:** Standard (v šeru vysoká stabilizace způsobuje rozmazání pohybu, tzv. "duchy").
         """)
+
     with st.expander("🛠️ Řešení problémů"):
         st.markdown("""
         * **Bluetooth:** Vypni Bluetooth v mobilu (mikrofon se často 'přilepí' k němu).
         * **Bez zvuku:** Zkontroluj, jestli kamera v Modu sedí úplně nadoraz.
-        * **Červené sloupce:** Sniž **Gain** na přijímači na -6 nebo -12 dB.
+        * **Limit zvuku:** Pokud indikátor hlasitosti na displeji dosahuje červených hodnot, v menu přijímače snižte zesílení (**Gain**) na -6 nebo -12 dB.
         """)
 
     st.subheader("📚 Manuály")
