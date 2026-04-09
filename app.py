@@ -20,7 +20,7 @@ st.markdown(f"""
         background-attachment: fixed;
     }}
 
-    /* 2. ZÁLOŽKY (TABS) */
+    /* 2. ZÁLOŽKY */
     .stTabs [data-baseweb="tab-highlight"] {{ background-color: transparent !important; height: 0 !important; }}
     .stTabs [data-baseweb="tab-border"] {{ display: none !important; }}
     .stTabs [data-baseweb="tab-list"] {{ gap: 16px; padding-bottom: 20px; }}
@@ -32,7 +32,6 @@ st.markdown(f"""
         font-weight: 600;
         color: #FFFFFF;
         border: 1px solid rgba(0, 174, 239, 0.35);
-        transition: all 0.3s ease;
     }}
     .stTabs [data-baseweb="tab"]:hover {{ background: rgba(255, 255, 255, 0.14); }}
     .stTabs [data-baseweb="tab"][aria-selected="true"] {{
@@ -40,7 +39,7 @@ st.markdown(f"""
         border: 2px solid #00AEEF !important;
     }}
 
-    /* 3. HLAVNÍ KARTY + EXPANDÉRY + MANUÁLY (stejné jako předtím) */
+    /* 3. HLAVNÍ KARTY */
     .glass-card {{
         background: rgba(0, 0, 0, 0.68) !important;
         backdrop-filter: blur(16px);
@@ -50,6 +49,7 @@ st.markdown(f"""
         box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65);
     }}
 
+    /* 4. TEXT A NADPISY */
     p, li, [data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] li {{
         color: #FFFFFF !important;
         font-weight: 500 !important;
@@ -63,14 +63,21 @@ st.markdown(f"""
         text-shadow: 2px 2px 6px rgba(0,0,0,0.6) !important;
     }}
 
+    /* 5. EXPANDÉRY */
     div[data-testid="stExpander"] {{
         background-color: rgba(255, 255, 255, 0.06) !important;
         border: 1px solid rgba(0, 174, 239, 0.45) !important;
         border-radius: 16px !important;
         margin-bottom: 12px;
     }}
+    div[data-testid="stExpander"] summary {{
+        padding: 16px 20px;
+    }}
+    div[data-testid="stExpander"] summary:hover {{
+        background-color: rgba(0, 174, 239, 0.18) !important;
+    }}
 
-    /* MANUÁLOVÉ KARTY */
+    /* 6. MANUÁLOVÉ KARTY */
     .manual-card {{
         background: rgba(255, 255, 255, 0.075) !important;
         border: 1px solid rgba(0, 174, 239, 0.4) !important;
@@ -100,23 +107,33 @@ st.markdown(f"""
         flex-shrink: 0;
     }}
 
-    /* === SILNÉ SKRYTÍ HORNÍHO BÍLÉHO PRUHU / GITHUB / SHARE === */
+    /* === SILNÉ SKRYTÍ HORNÍHO BÍLÉHO TOOLBARU (Share, GitHub, atd.) === */
     header[data-testid="stHeader"],
+    div[data-testid="stToolbar"],
     #GithubIcon,
     .viewerBadge_container__1QSob,
     .styles_viewerBadge__1yB5_,
-    .viewerBadge_link__1S137,
-    .viewerBadge_text__1JaDK,
     button[aria-label*="GitHub"],
     button[aria-label*="Fork"],
     button[aria-label*="Share"],
-    [data-testid="stToolbar"],
-    .css-1jc7ptx, .e1ewe7hr3 {
+    [data-testid="stDecoration"],
+    [data-testid="stStatusWidget"],
+    #MainMenu,
+    footer {{
         display: none !important;
         visibility: hidden !important;
         height: 0 !important;
         min-height: 0 !important;
-    }
+        padding: 0 !important;
+        margin: 0 !important;
+    }}
+
+    /* Extra ochrana pro novější verze Streamlit */
+    .st-emotion-cache-1jc7ptx, 
+    .e1ewe7hr3,
+    .css-1jc7ptx {{
+        display: none !important;
+    }}
 
     /* Responsivita */
     @media (max-width: 768px) {{
@@ -126,7 +143,7 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# ==================== ZBÝVAJÍCÍ KÓD (stejný jako minule) ====================
+# ==================== OBSAH ====================
 st.title("📹 GoPro Asistent")
 st.markdown("**Průvodce pro Hero 13 + DJI Mic 3 v průmyslovém provozu**")
 
@@ -227,4 +244,4 @@ with col_right:
 with col_left:
     st.info("**Tip:** Čočka **LINEAR** je nejlepší pro technickou dokumentaci – nedeformuje obraz stroje.")
 
-st.caption("GoPro Asistent • Vylepšená verze")
+st.caption("GoPro Asistent • Vylepšená verze • 2026")
