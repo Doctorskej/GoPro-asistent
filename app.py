@@ -7,21 +7,27 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CSS - OPRAVA KONTRASTU A VIDITELNOSTI ====================
+# ==================== CSS - ODSTRANĚNÍ BÍLÉHO PRUHU A "GLASS" EXPANDÉRY ====================
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
 <style>
+    /* 1. SCHOVÁNÍ SYSTÉMOVÉ LIŠTY STREAMLITU ÚPLNĚ NAHOŘE */
+    header {{visibility: hidden;}}
+    footer {{visibility: hidden;}}
+    #MainMenu {{visibility: hidden;}}
+
+    /* 2. CELKOVÉ POZADÍ */
     .stApp {{
-        background-image: linear-gradient(rgba(8, 12, 22, 0.9), rgba(8, 12, 22, 0.85)), url("{pozadi_url}");
+        background-image: linear-gradient(rgba(8, 12, 22, 0.85), rgba(8, 12, 22, 0.82)), url("{pozadi_url}");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
     }}
 
+    /* 3. TABS (Záložky) - Styling */
     .stTabs [data-baseweb="tab-highlight"] {{ background-color: transparent !important; height: 0 !important; }}
     .stTabs [data-baseweb="tab-border"] {{ display: none !important; }}
-
     .stTabs [data-baseweb="tab-list"] {{ gap: 14px; padding-bottom: 15px; }}
     .stTabs [data-baseweb="tab"] {{
         background: rgba(255, 255, 255, 0.08);
@@ -41,52 +47,48 @@ st.markdown(f"""
         box-shadow: 0 0 25px rgba(0, 174, 239, 0.4);
     }}
 
+    /* 4. HLAVNÍ KARTY */
     .glass-card {{
         background: rgba(255, 255, 255, 0.09) !important;
         backdrop-filter: blur(16px);
-        border: 1px solid rgba(0, 174, 239, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 18px;
         padding: 2.2rem;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
     }}
 
-    h1 {{ color: #00AEEF !important; font-weight: 800; letter-spacing: -0.03em; }}
-    h2, h3 {{ color: #FFFFFF !important; font-weight: 700; }}
-    p, li {{ color: #EEEEEE !important; font-size: 1.08rem; line-height: 1.65; }}
-
-    /* KOMPLETNÍ OPRAVA EXPANDERŮ - Bílý podklad, černý text pro max. čitelnost */
+    /* 5. OPRAVA EXPANDÉRU - Teď už žádný bílý pruh, ale "Glass" styl */
     div[data-testid="stExpander"] {{
-        background-color: #FFFFFF !important;
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(0, 174, 239, 0.4) !important;
         border-radius: 14px !important;
-        border: 2px solid #00AEEF !important;
         margin-bottom: 12px;
     }}
     
-    /* Vynucení černé barvy pro text uvnitř expanderu */
+    /* Vnitřní text expandéru - zpět na bílou/světlou pro čitelnost */
     div[data-testid="stExpander"] p, 
     div[data-testid="stExpander"] li,
     div[data-testid="stExpander"] span,
     div[data-testid="stExpander"] label,
     div[data-testid="stExpander"] summary p {{
-        color: #000000 !important;
-        font-weight: 600 !important;
+        color: #FFFFFF !important;
+        font-weight: 500 !important;
     }}
+
+    /* Styling pro nadpisy a text */
+    h1 {{ color: #00AEEF !important; font-weight: 800; }}
+    h2, h3 {{ color: #FFFFFF !important; font-weight: 700; }}
+    p, li {{ color: #EEEEEE !important; }}
 
     .manual-card {{
         background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
         border: 1px solid rgba(0, 174, 239, 0.35);
         border-radius: 16px;
-        padding: 1.5rem 1.8rem;
+        padding: 1.5rem;
         margin-bottom: 16px;
         display: flex;
         align-items: center;
-        transition: all 0.3s ease;
     }}
-    .manual-card:hover {{ background: rgba(0, 174, 239, 0.16); border-color: #00AEEF; transform: translateY(-3px); }}
-    .manual-card-icon {{ font-size: 2.3rem; margin-right: 20px; color: #00AEEF; }}
-    .manual-card-text {{ font-size: 1.18rem; font-weight: 600; color: #FFFFFF; }}
-
     img, iframe, video {{ border-radius: 16px; box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5); }}
 </style>
 """, unsafe_allow_html=True)
@@ -115,7 +117,7 @@ with tab1:
     with col_text:
         st.markdown("""
         ### Postup připojení
-        1. **Vyjmi mikrofon** z pouzdra a ověř, že svítí zeleně.
+        1. **Vyjmi mikrofon** z pouzdra (svítí zeleně).
         2. **Zapni kameru** (tlačítko **MODE**).
         3. **Menu:** Přejeď prstem dolů -> doleva.
         4. **Párování:** Zvol **„Pair device“**.
@@ -142,7 +144,7 @@ with tab2:
         2. **Přijímač:** Vyndej z pouzdra a potvrď **Confirm**.
         3. **Uchycení:** Nasuň přijímač do sáněk na boku Media Modu.
         4. **Propojení:** Zapoj kabel do přijímače (**OUT**) a do kamery (**spodní jack**).
-        5. **Kontrola:** Na displeji se musí objevit ikona mikrofonu.
+        5. **Kontrola:** Na displeji ověř ikonu mikrofonu.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -158,46 +160,33 @@ st.divider()
 col_l, col_r = st.columns([3, 2], gap="large")
 
 with col_l:
-    st.info("**Tip pro údržbu:** Pro technická videa vždy nastavte čočku **Linear**, aby linky strojů nebyly prohnuté.")
+    st.info("**Průmyslový tip:** Pro technická videa vždy nastavte čočku **LINEAR**, aby nedocházelo k deformaci strojů.")
 
 with col_r:
-    st.header("💡 Tipy a řešení problémů")
+    st.header("💡 Tipy a řešení")
 
-    # NOVÉ STRUKTUROVANÉ NASTAVENÍ - Bílý podklad, Váš text
     with st.expander("📸 Doporučené průmyslové profily"):
         st.markdown("""
-        **1. Celkové záběry linky / pracoviště** *Vhodné pro analýzu toku materiálu, pohybu operátorů nebo prostorové uspořádání.* * **Rozlišení:** 4K (ideální pro firemní síť).  
-        * **FPS:** 30 (plynulý obraz).  
-        * **Čočka (Lens):** Wide (Široká).  
-        * **Stabilizace:** AutoBoost.  
-        * **Barvy:** Natural (věrné podání).  
-
-        **2. Technický detail a údržba (Makro)** *Klíčové pro servisní úkony, zapojování konektorů nebo čtení štítků.* * **Rozlišení:** 4K / **FPS:** 30.  
-        * **Čočka (Lens):** **Linear (Lineární)** – Zcela zásadní! Odstraní zkreslení. Hrany strojů budou rovné.  
-        * **Horizon Lock:** Zapnuto (obraz zůstane vodorovně).  
-        * **Barvy:** Vibrant (zvýrazní kabely a diody).  
-
-        **3. Inspekce v temných prostorech** *Uvnitř strojních skříní, pod dopravníky nebo v šachtách.* * **FPS:** 24 (více světla pro čip).  
-        * **ISO Max:** 1600 (viditelnost v šeru).  
-        * **Ostrost:** Medium.  
-        * **Stabilizace:** Standard (v šeru brání duchům v obraze).
+        **1. Celkové záběry linky / pracoviště**
+        * Rozlišení: 4K / 30 FPS, Čočka: Wide (Široká).
+        
+        **2. Technický detail a údržba (Makro)**
+        * Čočka: **LINEAR (Lineární)** – nedeformuje obraz.
+        * Horizon Lock: Zapnuto (obraz drží rovinu).
+        
+        **3. Inspekce v temných prostorech**
+        * FPS: 24 (více světla), ISO Max: 1600.
         """)
 
     with st.expander("🛠️ Řešení problémů (Troubleshooting)"):
-        st.subheader("🔵 Bluetooth připojení")
         st.markdown("""
-        * **Kamera nevidí mikrofon:** Pravděpodobně je mikrofon připojený k tvému mobilu. Vypni Bluetooth v mobilu a zkus to znovu.
-        * **Zvuk vypadává:** Mezi kamerou a mikrofonem nesmí být kovová stěna stroje. Bluetooth přes kov neprojde.
-        """)
-        st.subheader("📡 Připojení přes kabel a Media Mod")
-        st.markdown("""
-        * **Není slyšet zvuk:** Zkontroluj, jestli je kamera v Media Modu doražená až nadoraz na konektor. Musí tam pevně sedět.
-        * **Lupání ve zvuku:** Dotlač propojovací kabel v přijímači i v kameře. Musí to slyšitelně cvaknout.
-        * **Příliš hlasitý zvuk:** Pokud indikátor hlasitosti dosahuje červených hodnot, upravte v menu přijímače úroveň zisku (Gain) na -6 dB nebo -12 dB.
+        * **Kamera nevidí mikrofon:** Vypni Bluetooth v mobilu, mikrofon se k němu možná "přilepil".
+        * **Není slyšet zvuk:** Zkontroluj, zda je kamera v Modu doražená až nadoraz na USB-C.
+        * **Příliš hlasitý zvuk:** Pokud indikátor hlasitosti na displeji dosahuje červených hodnot, v menu přijímače snižte zesílení (**Gain**) na -6 nebo -12 dB.
         """)
 
     st.subheader("📚 Manuály")
-    url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
-    url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
-    st.markdown(f'<a href="{url_gopro}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál GoPro Hero 13</span></div></a>', unsafe_allow_html=True)
-    st.markdown(f'<a href="{url_dji}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál DJI Mic 3</span></div></a>', unsafe_allow_html=True)
+    u_g = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
+    u_d = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
+    st.markdown(f'<a href="{u_g}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál GoPro Hero 13</span></div></a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{u_d}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál DJI Mic 3</span></div></a>', unsafe_allow_html=True)
