@@ -7,7 +7,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CSS - VYLEPŠENÝ GLASSMORPHISM & KONTRAST ====================
+# ==================== CSS - VYLEPŠENÝ GLASSMORPHISM + SKRYTÍ TOOLBARU ====================
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
@@ -34,16 +34,13 @@ st.markdown(f"""
         border: 1px solid rgba(0, 174, 239, 0.35);
         transition: all 0.3s ease;
     }}
-    .stTabs [data-baseweb="tab"]:hover {{
-        background: rgba(255, 255, 255, 0.14);
-    }}
+    .stTabs [data-baseweb="tab"]:hover {{ background: rgba(255, 255, 255, 0.14); }}
     .stTabs [data-baseweb="tab"][aria-selected="true"] {{
         background: rgba(0, 174, 239, 0.45) !important;
         border: 2px solid #00AEEF !important;
-        color: #FFFFFF;
     }}
 
-    /* 3. HLAVNÍ KARTY */
+    /* 3. HLAVNÍ KARTY + EXPANDÉRY + MANUÁLY (stejné jako předtím) */
     .glass-card {{
         background: rgba(0, 0, 0, 0.68) !important;
         backdrop-filter: blur(16px);
@@ -53,7 +50,6 @@ st.markdown(f"""
         box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65);
     }}
 
-    /* 4. VIDITELNOST TEXTU */
     p, li, [data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] li {{
         color: #FFFFFF !important;
         font-weight: 500 !important;
@@ -67,28 +63,14 @@ st.markdown(f"""
         text-shadow: 2px 2px 6px rgba(0,0,0,0.6) !important;
     }}
 
-    /* 5. EXPANDÉRY */
     div[data-testid="stExpander"] {{
         background-color: rgba(255, 255, 255, 0.06) !important;
         border: 1px solid rgba(0, 174, 239, 0.45) !important;
         border-radius: 16px !important;
         margin-bottom: 12px;
     }}
-    div[data-testid="stExpander"] summary {{
-        background-color: transparent !important;
-        color: #FFFFFF !important;
-        padding: 16px 20px;
-    }}
-    div[data-testid="stExpander"] summary:hover {{
-        background-color: rgba(0, 174, 239, 0.18) !important;
-        color: #00AEEF !important;
-    }}
-    div[data-testid="stExpander"] [data-testid="stExpanderDetails"] {{
-        background-color: rgba(0, 0, 0, 0.35) !important;
-        padding: 18px 22px;
-    }}
 
-    /* 6. MANUÁLOVÉ KARTY */
+    /* MANUÁLOVÉ KARTY */
     .manual-card {{
         background: rgba(255, 255, 255, 0.075) !important;
         border: 1px solid rgba(0, 174, 239, 0.4) !important;
@@ -106,41 +88,45 @@ st.markdown(f"""
         backdrop-filter: blur(12px);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
     }}
-
     .manual-card:hover {{
         background: rgba(0, 174, 239, 0.18) !important;
         border-color: #00AEEF !important;
         transform: translateY(-5px);
         box-shadow: 0 15px 35px rgba(0, 174, 239, 0.35);
     }}
-
     .manual-card::before {{
         content: "📘";
         font-size: 1.9rem;
         flex-shrink: 0;
     }}
 
-    /* === ODSTRANĚNÍ HORNÍHO BÍLÉHO PRUHU / GITHUB ICON === */
-    #GithubIcon, 
-    header [data-testid="stToolbar"] button[aria-label*="GitHub"],
+    /* === SILNÉ SKRYTÍ HORNÍHO BÍLÉHO PRUHU / GITHUB / SHARE === */
+    header[data-testid="stHeader"],
+    #GithubIcon,
     .viewerBadge_container__1QSob,
-    .styles_viewerBadge__1yB5_ {{
+    .styles_viewerBadge__1yB5_,
+    .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDK,
+    button[aria-label*="GitHub"],
+    button[aria-label*="Fork"],
+    button[aria-label*="Share"],
+    [data-testid="stToolbar"],
+    .css-1jc7ptx, .e1ewe7hr3 {
+        display: none !important;
         visibility: hidden !important;
         height: 0 !important;
-        width: 0 !important;
-        display: none !important;
-    }}
+        min-height: 0 !important;
+    }
 
     /* Responsivita */
     @media (max-width: 768px) {{
         .glass-card {{ padding: 1.8rem; }}
         .manual-card {{ padding: 1.2rem 1.6rem; font-size: 1.1rem; }}
-        .stTabs [data-baseweb="tab"] {{ padding: 12px 20px; font-size: 1rem; }}
     }}
 </style>
 """, unsafe_allow_html=True)
 
-# ==================== OBSAH ====================
+# ==================== ZBÝVAJÍCÍ KÓD (stejný jako minule) ====================
 st.title("📹 GoPro Asistent")
 st.markdown("**Průvodce pro Hero 13 + DJI Mic 3 v průmyslovém provozu**")
 
@@ -196,30 +182,30 @@ with col_right:
     with st.expander("📸 Doporučené průmyslové profily (GoPro Hero 13)"):
         st.markdown("""
         **1. Celkové záběry linky / pracoviště** 
-        * **Rozlišení:** 4K (ideální poměr kvality a velikosti souboru pro firemní síť).
-        * **Snímková frekvence (FPS):** 30 (plynulý, přirozený obraz).
-        * **Čočka (Lens):** Wide (Široká) – aby bylo vidět celé zařízení i okolní prostor.
-        * **Stabilizace (Hypersmooth):** AutoBoost (vynikající pro natáčení za chůze podél linky).
-        * **Barvy:** Natural (věrné podání barev pro identifikaci komponent).
+        * **Rozlišení:** 4K
+        * **FPS:** 30
+        * **Čočka:** Wide
+        * **Stabilizace:** AutoBoost
+        * **Barvy:** Natural
 
         **2. Technický detail a údržba**
-        * **Rozlišení:** 4K.
-        * **FPS:** 30.
-        * **Čočka (Lens):** Linear (Lineární) – **Zcela zásadní!** Odstraní zkreslení "rybího oka".
-        * **Horizon Lock:** Zapnuto.
-        * **Barvy:** Vibrant (Zvýrazní barevné kódování kabelů, diody a bezpečnostní prvky).
+        * **Rozlišení:** 4K
+        * **FPS:** 30
+        * **Čočka:** Linear (zásadní!)
+        * **Horizon Lock:** Zapnuto
+        * **Barvy:** Vibrant
 
         **3. Natáčení v temných prostorech**
-        * **FPS:** 24.
-        * **ISO Max:** 1600.
-        * **Ostrost (Sharpness):** Medium.
-        * **Stabilizace:** Standard.
+        * **FPS:** 24
+        * **ISO Max:** 1600
+        * **Ostrost:** Medium
+        * **Stabilizace:** Standard
         """)
 
     with st.expander("🛠️ Řešení problémů"):
         st.markdown("""
-        * **Bez zvuku:** Zkontroluj, jestli kamera v Modu sedí úplně nadoraz.
-        * **Limit zvuku:** Pokud indikátor hlasitosti dosahuje červených hodnot, snižte **Gain** na -6 nebo -12 dB.
+        * **Bez zvuku:** Kamera musí sedět nadoraz v Media Modu.
+        * **Limit zvuku:** Snižte **Gain** na -6 nebo -12 dB.
         """)
 
     st.subheader("📚 Manuály")
@@ -241,4 +227,4 @@ with col_right:
 with col_left:
     st.info("**Tip:** Čočka **LINEAR** je nejlepší pro technickou dokumentaci – nedeformuje obraz stroje.")
 
-st.caption("GoPro Asistent • Vylepšená verze • 2026")
+st.caption("GoPro Asistent • Vylepšená verze")
