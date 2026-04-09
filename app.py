@@ -55,11 +55,11 @@ st.markdown(f"""
     h2, h3 {{ color: #FFFFFF !important; font-weight: 700; }}
     p, li {{ color: #EEEEEE !important; font-size: 1.08rem; line-height: 1.65; }}
 
-    /* Speciální úprava pro expander v postranním panelu */
     .stExpander {{
         background: rgba(255, 255, 255, 0.05) !important;
         border: 1px solid rgba(0, 174, 239, 0.2) !important;
         border-radius: 14px !important;
+        margin-bottom: 10px;
     }}
 
     .manual-card {{
@@ -83,7 +83,7 @@ st.markdown(f"""
 
 # ==================== HLAVIČKA ====================
 st.title("📹 GoPro Asistent")
-st.markdown("**Praktický průvodce propojením GoPro Hero 13 + DJI Mic 3**")
+st.markdown("**Průmyslový standard pro nahrávání údržby a instruktážních videí (Hero 13 + DJI Mic 3)**")
 
 # ==================== TABS ====================
 tab1, tab2, tab3 = st.tabs([
@@ -105,22 +105,20 @@ with tab1:
     with col_text:
         st.markdown("""
         ### Postup připojení
-        1. **Vyjmi mikrofon** z dokovací stanice DJI.
+        1. **Vyjmi mikrofon** z dokovací stanice.
         2. **Zkontroluj zapnutí:** (bliká zelené tlačítko).
-           * *Popřípadě zapni podržením červeného tlačítka.*
-        3. **Zapni kameru** stisknutím tlačítka **MODE**.
+        3. **Zapni kameru** (tlačítko **MODE**).
         4. **Přejeď prstem** od shora dolů a pak **doleva**.
         5. Stiskni **„Pair device“**.
-        6. Stiskni **2x tlačítko připojení** (modré blikání).
+        6. Stiskni **2x tlačítko připojení** na mikrofonu.
         7. **Podrž tlačítko na 3 vteřiny** (modro-zelené blikání).
-        8. Na displeji kamery klikni na **DJI Mic 3 TX**.
-        9. **Klikni na řádek** a zařízení se propojí.
+        8. Na displeji kamery potvrď **DJI Mic 3 TX**.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
 with tab2:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.header("📡 Propojení s media modem a přijímačem RX")
+    st.header("📡 Propojení přes Media Mod (Kabelové)")
     col_video, col_text = st.columns([1.65, 1], gap="large")
     with col_video:
         st.subheader("🎥 Videonávod")
@@ -131,13 +129,11 @@ with tab2:
     with col_text:
         st.markdown("""
         ### Postup připojení
-        1. **Odstraň dvířka** kamery a **otevři media mod**.
-        2. **Vlož kameru** nadoraz na konektory a **zavři mod**.
-        3. **Vyjmi přijímač** a potvrď **Confirm**.
-        4. **Zkontroluj mikrofony**, zda diody svítí zeleně.
-        5. **Nasuň přijímač** z boku media modu displejem k sobě.
-        6. **Zapoj kabel** do přijímače (**Out**) a do kamery (**spodní vstup**).
-        7. **Zapni kameru**.
+        1. **Vlož kameru** nadoraz do Media Modu.
+        2. **Vyjmi přijímač** a potvrď **Confirm**.
+        3. **Nasuň přijímač** do sáněk Media Modu.
+        4. **Zapoj kabel** do přijímače (**Out**) a do kamery (**spodní jack**).
+        5. **Zapni kameru**.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -148,38 +144,53 @@ with tab3:
     st.image(raw_image_url, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ==================== FOOTER SECTION (TIPS & TROUBLESHOOTING) ====================
+# ==================== FOOTER SECTION ====================
 st.divider()
 col_l, col_r = st.columns([3, 2], gap="large")
 
 with col_l:
-    st.info("**Tip pro terén:** Pokud fouká, nasaď na mikrofon 'mrtvou kočku' (chlupatý návlek). SD karty promazávej pravidelně v aplikaci Quik.")
+    st.info("**Průmyslový tip:** Pro technická videa používejte vždy Lineární čočku (Linear), aby nedocházelo k deformaci strojů a linky.")
 
 with col_r:
     st.header("💡 Tipy a triky")
-    
-    # NOVÁ SEKCE: ŘEŠENÍ PROBLÉMŮ
-    with st.expander("🛠️ Řešení problémů (Troubleshooting)"):
-        st.subheader("🔵 Bluetooth spojení")
+
+    # NOVÁ SEKCE: PRŮMYSLOVÉ PROFILY
+    with st.expander("📸 Doporučené průmyslové profily"):
+        st.subheader("1. Celkové záběry linky / pracoviště")
         st.markdown("""
-        * **Kamera nevidí mikrofon:** Mikrofon je možná připojen k mobilu. Vypni Bluetooth v mobilu a zkus párování znovu.
-        * **Zvuk vypadává:** Bluetooth nepřenese signál přes kovové stroje. Udržuj přímou viditelnost.
+        *Analýza toku materiálu a pohybu operátorů.*
+        * **Rozlišení:** 4K / **FPS:** 30.
+        * **Čočka (Lens):** **Wide (Široká)** – maximální přehled o okolí.
+        * **Stabilizace:** AutoBoost (pro natáčení za chůze podél linky).
+        * **Barvy:** Natural.
         """)
         
-        st.subheader("📡 Media Mod + Přijímač")
+        st.subheader("2. Technický detail a údržba (Makro)")
         st.markdown("""
-        * **Není slyšet zvuk:** Kamera musí být v Media Modu doražená úplně nadoraz na USB-C konektor.
-        * **Zvuk chrčí:** Na přijímači sjeď dolů a nastav **Gain** na nižší hodnotu (např. -6dB).
-        * **Lupání ve zvuku:** Zkontroluj, zda je jack kabel v přijímači i v kameře zastrčen nadoraz (musí cvaknout).
+        *Servisní úkony, zapojování konektorů, čtení štítků.*
+        * **Rozlišení:** 4K / **FPS:** 30.
+        * **Čočka (Lens):** **Linear (Lineární)** – **KLÍČOVÉ!** Hrany strojů zůstanou rovné (bez rybího oka).
+        * **Horizon Lock:** Zapnuto (obraz zůstane v rovině i při náklonu kamery).
+        * **Barvy:** Vibrant (zvýrazní barevné kódování kabelů a diody).
         """)
         
-        st.subheader("⚡ Obecné")
+        st.subheader("3. Inspekce v temných prostorech")
         st.markdown("""
-        * **Neznámé příslušenství:** Vyndej baterku z GoPro, znovu nasaď Media Mod a zapni.
-        * **Vybito:** DJI pouzdro nabíjí mikrofony, ale samo musí být nabité (kontroluj diody na boku).
+        *Vnitřky strojních skříní, šachty, pod dopravníky.*
+        * **FPS:** 24 (čip nasaje více světla).
+        * **ISO Max:** 1600 (čitelnost v šeru bez extrémního zrnění).
+        * **Stabilizace:** Standard (v šeru brání rozmazání pohybu).
         """)
 
-    st.subheader("📚 Manuály")
+    # SEKCE: ŘEŠENÍ PROBLÉMŮ
+    with st.expander("🛠️ Řešení problémů (Troubleshooting)"):
+        st.subheader("🔵 Bluetooth")
+        st.markdown("* **Kamera nevidí mikrofon:** Vypni Bluetooth v mobilu, mikrofon se k němu možná "přilepil".")
+        st.subheader("📡 Media Mod")
+        st.markdown("* **Není slyšet zvuk:** Zkontroluj, zda je kamera v Modu doražená až nadoraz na USB-C.")
+        st.markdown("* **Lupání:** Dotlač jack kabel v přijímači i kameře (musí cvaknout).")
+
+    st.subheader("📚 Dokumentace")
     url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
     url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
     st.markdown(f'<a href="{url_gopro}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál GoPro Hero 13</span></div></a>', unsafe_allow_html=True)
