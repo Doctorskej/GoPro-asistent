@@ -145,7 +145,7 @@ st.markdown(f"""
 
 # ==================== OBSAH ====================
 st.title("📹 GoPro Asistent")
-st.markdown("**Průvodce pro Hero 13 + DJI Mic 3 v průmyslovém provozu**")
+st.markdown("**Průvodce pro Hero 13 + DJI Mic 3**")
 
 tab1, tab2, tab3 = st.tabs(["🔵 Připojení jednoho mikrofonu", "📡 Připojení obou mikrofonů", "⚡ Tahák"])
 
@@ -196,7 +196,7 @@ col_left, col_right = st.columns([3, 2], gap="large")
 with col_right:
     st.header("💡 Tipy a řešení")
     
-    with st.expander("📸 Doporučené průmyslové profily (GoPro Hero 13)"):
+    with st.expander("📸 Doporučené profily nastavení kamery "):
         st.markdown("""
         **1. Celkové záběry linky / pracoviště** 
         * **Rozlišení:** 4K
