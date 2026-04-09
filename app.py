@@ -1,5 +1,6 @@
 import streamlit as st
 
+# ==================== NASTAVENÍ ====================
 st.set_page_config(
     page_title="GoPro Asistent",
     page_icon="🎥",
@@ -7,72 +8,62 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== MODERNÍ CSS (bez červeného podtržení) ====================
+# ==================== CSS - BEZ ČERVENÉHO PODTRŽENÍ ====================
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
 <style>
     .stApp {{
-        background-image: linear-gradient(rgba(8, 12, 22, 0.94), rgba(8, 12, 22, 0.90)), url("{pozadi_url}");
+        background-image: linear-gradient(rgba(10, 15, 25, 0.93), rgba(10, 15, 25, 0.89)), url("{pozadi_url}");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
     }}
 
-    /* Segmented control - moderní tlačítka místo tabs */
-    .segment-container {{
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        margin: 2rem 0 2.5rem 0;
-        flex-wrap: wrap;
+    /* Moderní tabs bez červené čáry */
+    .stTabs [data-baseweb="tab-list"] {{
+        gap: 16px;
+        padding-bottom: 20px;
     }}
-    .segment-btn {{
-        background: rgba(255, 255, 255, 0.08);
-        color: #CCCCCC;
-        border: 1px solid rgba(0, 174, 239, 0.3);
-        padding: 14px 28px;
-        border-radius: 50px;
+    .stTabs [data-baseweb="tab"] {{
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 14px;
+        padding: 16px 28px;
+        font-size: 1.08rem;
         font-weight: 600;
-        font-size: 1.05rem;
-        cursor: pointer;
+        color: #CCCCCC;
+        border: 1px solid rgba(0, 174, 239, 0.25);
         transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        white-space: nowrap;
     }}
-    .segment-btn:hover {{
+    .stTabs [data-baseweb="tab"]:hover {{
         background: rgba(0, 174, 239, 0.15);
         border-color: #00AEEF;
         color: white;
-        transform: translateY(-2px);
     }}
-    .segment-btn.active {{
-        background: rgba(0, 174, 239, 0.25);
-        border: 2px solid #00AEEF;
-        color: #FFFFFF;
-        box-shadow: 0 0 20px rgba(0, 174, 239, 0.35);
+    /* Aktivní záložka - modrý glow, žádná červená čára */
+    .stTabs [data-baseweb="tab"][aria-selected="true"] {{
+        background: rgba(0, 174, 239, 0.28) !important;
+        border: 2px solid #00AEEF !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 0 22px rgba(0, 174, 239, 0.45);
     }}
 
     .glass-card {{
-        background: rgba(255, 255, 255, 0.07);
-        backdrop-filter: blur(16px);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(14px);
         border: 1px solid rgba(0, 174, 239, 0.25);
-        border-radius: 20px;
+        border-radius: 18px;
         padding: 2rem;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
     }}
 
     h1 {{
         color: #00AEEF !important;
         font-weight: 800;
-        letter-spacing: -0.03em;
-        margin-bottom: 0.3rem;
+        letter-spacing: -0.02em;
     }}
-    h2 {{
+    h2, h3 {{
         color: #FFFFFF !important;
-        font-weight: 700;
     }}
 
     .manual-card {{
@@ -80,19 +71,19 @@ st.markdown(f"""
         backdrop-filter: blur(12px);
         border: 1px solid rgba(0, 174, 239, 0.3);
         border-radius: 16px;
-        padding: 1.4rem 1.6rem;
+        padding: 1.4rem 1.8rem;
         margin-bottom: 14px;
         display: flex;
         align-items: center;
         transition: all 0.3s ease;
     }}
     .manual-card:hover {{
-        background: rgba(0, 174, 239, 0.15);
+        background: rgba(0, 174, 239, 0.14);
         border-color: #00AEEF;
-        transform: translateY(-3px);
+        transform: translateY(-2px);
     }}
     .manual-card-icon {{
-        font-size: 2.1rem;
+        font-size: 2.2rem;
         margin-right: 18px;
         color: #00AEEF;
     }}
@@ -104,114 +95,99 @@ st.markdown(f"""
 
     img, iframe, video {{
         border-radius: 16px;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
     }}
 </style>
 """, unsafe_allow_html=True)
 
 # ==================== HLAVIČKA ====================
-st.markdown("""
-    <div style="text-align: center; margin-bottom: 1rem;">
-        <h1 style="font-size: 3.2rem; margin-bottom: 0;">📹 GoPro Asistent</h1>
-        <p style="font-size: 1.25rem; color: #AAAAAA; margin-top: 0.5rem;">
-            Praktický průvodce propojením GoPro Hero 13 + DJI Mic 3
-        </p>
-    </div>
-""", unsafe_allow_html=True)
+st.title("📹 GoPro Asistent")
+st.markdown("**Praktický průvodce propojením GoPro Hero 13 + DJI Mic 3**")
 
-# ==================== SEGMENTOVANÉ TLAČÍTKO (nahrazuje tabs) ====================
-option = st.radio(
-    label="Vyber typ propojení",
-    options=[
-        "🔵 Přímé Bluetooth – jeden mikrofon",
-        "📡 Media Mod + bezdrátový přijímač",
-        "⚡ Rychlý obrázkový tahák"
-    ],
-    horizontal=True,
-    label_visibility="collapsed"
-)
+# ==================== TABS (bez červeného podtržení) ====================
+tab1, tab2, tab3 = st.tabs([
+    "🔵 Přímé Bluetooth – jeden mikrofon",
+    "📡 Media Mod + bezdrátový přijímač",
+    "⚡ Rychlý obrázkový tahák"
+])
 
-# Převod na aktivní třídu pro CSS
-active_class = "active"
-
-st.markdown(f"""
-<div class="segment-container">
-    <div class="segment-btn {'active' if option == '🔵 Přímé Bluetooth – jeden mikrofon' else ''}">🔵 Přímé Bluetooth</div>
-    <div class="segment-btn {'active' if option == '📡 Media Mod + bezdrátový přijímač' else ''}">📡 Media Mod + přijímač</div>
-    <div class="segment-btn {'active' if option == '⚡ Rychlý obrázkový tahák' else ''}">⚡ Rychlý tahák</div>
-</div>
-""", unsafe_allow_html=True)
-
-# ==================== HLAVNÍ OBSAH PODLE VÝBĚRU ====================
-st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-
-if option == "🔵 Přímé Bluetooth – jeden mikrofon":
+# --- TAB 1 ---
+with tab1:
+    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.header("🔵 Postup pro přímé Bluetooth spojení")
-    col1, col2 = st.columns([1.65, 1])
-    with col1:
+    
+    col_video, col_text = st.columns([1.65, 1], gap="large")
+    with col_video:
         st.subheader("🎥 Videonávod")
         st.video("https://www.youtube.com/watch?v=LXb3EKWsInQ")
-    with col2:
+    with col_text:
         st.markdown("""
         ### Příprava mikrofonu
-        1. Vyjmi mikrofon z dokovací stanice DJI.
-        2. Zkontroluj napájení – zapnutý bliká zeleně.
+        1. **Vyjmi mikrofon** z dokovací stanice DJI.
+        2. **Zkontroluj napájení:** Zapnutý = bliká zelené tlačítko.
         
         ### Nastavení kamery
-        3. Zapni kameru (tlačítko MODE).
-        4. Přejeď prstem dolů → doleva.
-        5. Stiskni „Pair device“.
+        3. **Zapni kameru** (boční tlačítko `MODE`).
+        4. **Přejeď prstem dolů** a pak **doleva**.
+        5. Stiskni **„Pair device“**.
         
-        ### Párování
-        6. Na mikrofonu podrž tlačítko **Link**.
-        7. Na GoPro klikni na **DJI Mic 3 TX**.
+        ### Samotné párování
+        6. Na mikrofonu **podrž tlačítko Link**.
+        7. Na displeji kamery klikni na **DJI Mic 3 TX**.
         """)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-elif option == "📡 Media Mod + bezdrátový přijímač":
+# --- TAB 2 ---
+with tab2:
+    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.header("📡 Propojení kamery s Media Modem a přijímačem RX")
-    col1, col2 = st.columns([1.65, 1])
-    with col1:
+    
+    col_video, col_text = st.columns([1.65, 1], gap="large")
+    with col_video:
         st.subheader("🎥 Videonávod")
         st.markdown("""
         <iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=061cd250-a744-4be2-8bd8-d404aed6f8d8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" 
                 width="100%" height="400" frameborder="0" scrolling="no" allowfullscreen></iframe>
         """, unsafe_allow_html=True)
-    with col2:
+    with col_text:
         st.markdown("""
         ### Instalace Media Modu
-        1. Odstraň dvířka kamery.
-        2. Vlož kameru do Media Modu.
-        3. Zavři Media Mod.
+        1. **Odstraň dvířka** kamery.
+        2. **Vlož kameru** do Media Modu.
+        3. **Zavři Media Mod**.
         
-        ### Příprava přijímače
-        4. Vyjmi přijímač z pouzdra.
-        5. Potvrď zprávu na displeji.
+        ### Příprava DJI přijímače
+        4. **Vyjmi přijímač** z pouzdra.
+        5. **Potvrď informaci** na displeji (Confirm).
         
-        ### Propojení
-        6. Nasuň přijímač na Media Mod.
-        7. Zapoj kabel do přijímače (OUT) a do kamery.
+        ### Fyzické propojení
+        6. **Nasuň přijímač** na Media Mod.
+        7. **Zapoj kabel** do přijímače (OUT) a do kamery.
         """)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-else:  # Rychlý tahák
+# --- TAB 3 ---
+with tab3:
+    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.header("⚡ Rychlý obrázkový tahák")
-    st.markdown("Kliknutím na obrázek si ho můžeš zvětšit.")
+    st.markdown("*Rychlý přehled pro zapojení. Kliknutím na obrázek si ho můžeš zvětšit.*")
+    
     raw_image_url = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro%20propojen%C3%AD.png"
     st.image(raw_image_url, use_container_width=True)
-
-st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ==================== TIPS SEKCE ====================
 st.divider()
 
-col_a, col_b = st.columns([3, 2])
+col_left, col_right = st.columns([3, 2], gap="large")
 
-with col_b:
-    st.subheader("💡 Tipy a triky")
+with col_right:
+    st.header("💡 Tipy a triky")
     
-    st.markdown("**🎥 Užitečné videonávody**")
+    st.subheader("🎥 Videonávody")
     st.markdown("""
-    • [Uchycení GoPro na rám stroje](https://www.youtube.com/watch?v=LXb3EKWsInQ)  
-    • [Nastavení expozice v temné hale](https://www.youtube.com/watch?v=LXb3EKWsInQ)
+    • [Jak správně uchytit GoPro na rám stroje](https://www.youtube.com/watch?v=LXb3EKWsInQ)  
+    • [Jak nastavit expozici v temné hale](https://www.youtube.com/watch?v=LXb3EKWsInQ)
     """)
     
     st.subheader("📚 Manuály")
@@ -219,22 +195,22 @@ with col_b:
     url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
     
     st.markdown(f"""
-    <a href="{url_gopro}" target="_blank" style="text-decoration:none;">
+    <a href="{url_gopro}" target="_blank" style="text-decoration: none;">
         <div class="manual-card">
             <span class="manual-card-icon">📘</span>
-            <span class="manual-card-text">Manuál GoPro Hero 13</span>
+            <span class="manual-card-text">Otevřít manuál k GoPro 13</span>
         </div>
     </a>
     """, unsafe_allow_html=True)
     
     st.markdown(f"""
-    <a href="{url_dji}" target="_blank" style="text-decoration:none;">
+    <a href="{url_dji}" target="_blank" style="text-decoration: none;">
         <div class="manual-card">
             <span class="manual-card-icon">📘</span>
-            <span class="manual-card-text">Manuál DJI Mic 3</span>
+            <span class="manual-card-text">Otevřít manuál k DJI Mic 3</span>
         </div>
     </a>
     """, unsafe_allow_html=True)
 
-with col_a:
-    st.info("**Tip pro terén:** Nejlepší je používat appku na mobilu v režimu na výšku. Všechny postupy jsou ověřené na GoPro Hero 13 + DJI Mic 3 (2026).")
+with col_left:
+    st.info("**Tip:** Appka funguje nejlépe na mobilu v plném režimu. Všechny postupy jsou ověřené na GoPro Hero 13 + DJI Mic 3.")
