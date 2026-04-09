@@ -19,7 +19,6 @@ st.markdown(f"""
         background-attachment: fixed;
     }}
 
-    /* Odstranění červeného zvýraznění záložek */
     .stTabs [data-baseweb="tab-highlight"] {{ background-color: transparent !important; height: 0 !important; }}
     .stTabs [data-baseweb="tab-border"] {{ display: none !important; }}
 
@@ -154,41 +153,35 @@ with col_l:
 with col_r:
     st.header("💡 Tipy a triky")
 
-    # NOVÁ SEKCE: PRŮMYSLOVÉ PROFILY
     with st.expander("📸 Doporučené průmyslové profily"):
         st.subheader("1. Celkové záběry linky / pracoviště")
         st.markdown("""
-        *Analýza toku materiálu a pohybu operátorů.*
         * **Rozlišení:** 4K / **FPS:** 30.
-        * **Čočka (Lens):** **Wide (Široká)** – maximální přehled o okolí.
-        * **Stabilizace:** AutoBoost (pro natáčení za chůze podél linky).
+        * **Čočka (Lens):** **Wide (Široká)** – maximální přehled.
+        * **Stabilizace:** AutoBoost.
         * **Barvy:** Natural.
         """)
         
         st.subheader("2. Technický detail a údržba (Makro)")
         st.markdown("""
-        *Servisní úkony, zapojování konektorů, čtení štítků.*
         * **Rozlišení:** 4K / **FPS:** 30.
-        * **Čočka (Lens):** **Linear (Lineární)** – **KLÍČOVÉ!** Hrany strojů zůstanou rovné (bez rybího oka).
-        * **Horizon Lock:** Zapnuto (obraz zůstane v rovině i při náklonu kamery).
-        * **Barvy:** Vibrant (zvýrazní barevné kódování kabelů a diody).
+        * **Čočka (Lens):** **Linear (Lineární)** – Žádné rybí oko.
+        * **Horizon Lock:** Zapnuto.
+        * **Barvy:** Vibrant (zvýrazní barevné kabely).
         """)
         
         st.subheader("3. Inspekce v temných prostorech")
         st.markdown("""
-        *Vnitřky strojních skříní, šachty, pod dopravníky.*
-        * **FPS:** 24 (čip nasaje více světla).
-        * **ISO Max:** 1600 (čitelnost v šeru bez extrémního zrnění).
-        * **Stabilizace:** Standard (v šeru brání rozmazání pohybu).
+        * **FPS:** 24 / **ISO Max:** 1600.
+        * **Stabilizace:** Standard.
         """)
 
-    # SEKCE: ŘEŠENÍ PROBLÉMŮ
     with st.expander("🛠️ Řešení problémů (Troubleshooting)"):
         st.subheader("🔵 Bluetooth")
-        st.markdown("* **Kamera nevidí mikrofon:** Vypni Bluetooth v mobilu, mikrofon se k němu možná "přilepil".")
+        st.markdown("""* **Kamera nevidí mikrofon:** Vypni Bluetooth v mobilu, mikrofon se k němu možná "přilepil".""")
         st.subheader("📡 Media Mod")
-        st.markdown("* **Není slyšet zvuk:** Zkontroluj, zda je kamera v Modu doražená až nadoraz na USB-C.")
-        st.markdown("* **Lupání:** Dotlač jack kabel v přijímači i kameře (musí cvaknout).")
+        st.markdown("""* **Není slyšet zvuk:** Zkontroluj, zda je kamera v Modu doražená až nadoraz na USB-C.""")
+        st.markdown("""* **Lupání:** Dotlač jack kabel v přijímači i kameře (musí cvaknout).""")
 
     st.subheader("📚 Dokumentace")
     url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
