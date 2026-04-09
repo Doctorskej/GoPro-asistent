@@ -82,18 +82,18 @@ st.markdown(f"""
 
 # ==================== HLAVIČKA ====================
 st.title("📹 GoPro Asistent")
-st.markdown("**Průmyslový standard pro nahrávání údržby a instruktážních videí (Hero 13 + DJI Mic 3)**")
+st.markdown("**Návod pro nahrávání údržby a technických instruktáží (Hero 13 + DJI Mic 3)**")
 
 # ==================== TABS ====================
 tab1, tab2, tab3 = st.tabs([
-    "🔵 Přímé Bluetooth – jeden mikrofon",
-    "📡 Media Mod + bezdrátový přijímač",
+    "🔵 Přímé připojení Bluetooth (1 mikrofon)",
+    "📡 Připojení přes Media Mod a kabel",
     "⚡ Rychlý obrázkový tahák"
 ])
 
 with tab1:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.header("🔵 Propojení kamery a jednoho mikrofonu přes Bluetooth")
+    st.header("🔵 Přímé připojení jednoho mikrofonu")
     col_video, col_text = st.columns([1.65, 1], gap="large")
     with col_video:
         st.subheader("🎥 Videonávod")
@@ -104,20 +104,19 @@ with tab1:
     with col_text:
         st.markdown("""
         ### Postup připojení
-        1. **Vyjmi mikrofon** z dokovací stanice.
-        2. **Zkontroluj zapnutí:** (bliká zelené tlačítko).
-        3. **Zapni kameru** (tlačítko **MODE**).
-        4. **Přejeď prstem** od shora dolů a pak **doleva**.
-        5. Stiskni **„Pair device“**.
-        6. Stiskni **2x tlačítko připojení** na mikrofonu.
-        7. **Podrž tlačítko na 3 vteřiny** (modro-zelené blikání).
-        8. Na displeji kamery potvrď **DJI Mic 3 TX**.
+        1. **Vyjmi mikrofon** z pouzdra a ověř, že svítí zeleně.
+        2. **Zapni kameru** (tlačítko **MODE**).
+        3. **Menu:** Přejeď prstem dolů -> doleva.
+        4. **Párování:** Zvol **„Pair device“**.
+        5. **Na mikrofonu:** 2x krátce zmáčkni tlačítko (modré blikání).
+        6. **Na mikrofonu:** Podrž tlačítko na 3s (modro-zelené blikání).
+        7. **Na kameře:** Klikni na nalezený **DJI Mic 3 TX**.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
 with tab2:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.header("📡 Propojení přes Media Mod (Kabelové)")
+    st.header("📡 Připojení přes Media Mod a přijímač")
     col_video, col_text = st.columns([1.65, 1], gap="large")
     with col_video:
         st.subheader("🎥 Videonávod")
@@ -128,11 +127,11 @@ with tab2:
     with col_text:
         st.markdown("""
         ### Postup připojení
-        1. **Vlož kameru** nadoraz do Media Modu.
-        2. **Vyjmi přijímač** a potvrď **Confirm**.
-        3. **Nasuň přijímač** do sáněk Media Modu.
-        4. **Zapoj kabel** do přijímače (**Out**) a do kamery (**spodní jack**).
-        5. **Zapni kameru**.
+        1. **Kamera:** Sundej dvířka a zasuň kameru nadoraz do Media Modu.
+        2. **Přijímač:** Vyndej z pouzdra a potvrď **Confirm**.
+        3. **Uchycení:** Nasuň přijímač do sáněk na boku Media Modu.
+        4. **Propojení:** Zapoj kabel do přijímače (**OUT**) a do kamery (**spodní jack**).
+        5. **Kontrola:** Na displeji se musí objevit ikona mikrofonu a hýbat se sloupečky zvuku.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -148,42 +147,34 @@ st.divider()
 col_l, col_r = st.columns([3, 2], gap="large")
 
 with col_l:
-    st.info("**Průmyslový tip:** Pro technická videa používejte vždy Lineární čočku (Linear), aby nedocházelo k deformaci strojů a linky.")
+    st.info("**Tip pro údržbu:** Pro technická videa vždy nastavte čočku **Linear**, aby linky strojů nebyly prohnuté.")
 
 with col_r:
-    st.header("💡 Tipy a triky")
+    st.header("💡 Tipy a řešení problémů")
 
-    with st.expander("📸 Doporučené průmyslové profily"):
-        st.subheader("1. Celkové záběry linky / pracoviště")
+    with st.expander("📸 Doporučené nastavení kamery"):
         st.markdown("""
-        * **Rozlišení:** 4K / **FPS:** 30.
-        * **Čočka (Lens):** **Wide (Široká)** – maximální přehled.
-        * **Stabilizace:** AutoBoost.
-        * **Barvy:** Natural.
-        """)
-        
-        st.subheader("2. Technický detail a údržba (Makro)")
-        st.markdown("""
-        * **Rozlišení:** 4K / **FPS:** 30.
-        * **Čočka (Lens):** **Linear (Lineární)** – Žádné rybí oko.
-        * **Horizon Lock:** Zapnuto.
-        * **Barvy:** Vibrant (zvýrazní barevné kabely).
-        """)
-        
-        st.subheader("3. Inspekce v temných prostorech")
-        st.markdown("""
-        * **FPS:** 24 / **ISO Max:** 1600.
-        * **Stabilizace:** Standard.
+        | Typ nahrávání | Rozlišení | Čočka (Lens) | Stabilizace |
+        | :--- | :--- | :--- | :--- |
+        | **Pohyb u linky** | 4K / 30 FPS | Wide (Široká) | AutoBoost |
+        | **Detail úkonu** | 4K / 30 FPS | **Linear (Rovná)** | Horizon Lock |
+        | **Špatné světlo** | 4K / 24 FPS | Linear (Rovná) | Standard |
         """)
 
     with st.expander("🛠️ Řešení problémů (Troubleshooting)"):
-        st.subheader("🔵 Bluetooth")
-        st.markdown("""* **Kamera nevidí mikrofon:** Vypni Bluetooth v mobilu, mikrofon se k němu možná "přilepil".""")
-        st.subheader("📡 Media Mod")
-        st.markdown("""* **Není slyšet zvuk:** Zkontroluj, zda je kamera v Modu doražená až nadoraz na USB-C.""")
-        st.markdown("""* **Lupání:** Dotlač jack kabel v přijímači i kameře (musí cvaknout).""")
+        st.subheader("🔵 Bluetooth připojení")
+        st.markdown("""
+        * **Kamera nevidí mikrofon:** Pravděpodobně je mikrofon připojený k tvému mobilu. Vypni Bluetooth v mobilu a zkus to znovu.
+        * **Zvuk vypadává:** Mezi kamerou a mikrofonem nesmí být kovová stěna stroje. Bluetooth přes kov neprojde.
+        """)
+        st.subheader("📡 Připojení přes kabel a Media Mod")
+        st.markdown("""
+        * **Není slyšet zvuk:** Zkontroluj, jestli je kamera v Media Modu doražená až nadoraz na konektor. Musí tam pevně sedět.
+        * **Lupání ve zvuku:** Dotlač propojovací kabel v přijímači i v kameře. Musí to slyšitelně cvaknout.
+        * **Příliš hlasitý zvuk:** Pokud sloupečky na displeji lezou do červené, na přijímači sjeď dolů a sniž **Gain** (Zesílení) na -6 nebo -12 dB.
+        """)
 
-    st.subheader("📚 Dokumentace")
+    st.subheader("📚 Manuály")
     url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
     url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
     st.markdown(f'<a href="{url_gopro}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál GoPro Hero 13</span></div></a>', unsafe_allow_html=True)
