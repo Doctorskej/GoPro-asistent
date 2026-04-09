@@ -88,7 +88,7 @@ st.markdown(f"""
         padding: 18px 22px;
     }}
 
-    /* 6. MANUÁLOVÉ KARTY – vylepšený sjednocený vizuál */
+    /* 6. MANUÁLOVÉ KARTY */
     .manual-card {{
         background: rgba(255, 255, 255, 0.075) !important;
         border: 1px solid rgba(0, 174, 239, 0.4) !important;
@@ -118,6 +118,17 @@ st.markdown(f"""
         content: "📘";
         font-size: 1.9rem;
         flex-shrink: 0;
+    }}
+
+    /* === ODSTRANĚNÍ HORNÍHO BÍLÉHO PRUHU / GITHUB ICON === */
+    #GithubIcon, 
+    header [data-testid="stToolbar"] button[aria-label*="GitHub"],
+    .viewerBadge_container__1QSob,
+    .styles_viewerBadge__1yB5_ {{
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        display: none !important;
     }}
 
     /* Responsivita */
@@ -230,4 +241,4 @@ with col_right:
 with col_left:
     st.info("**Tip:** Čočka **LINEAR** je nejlepší pro technickou dokumentaci – nedeformuje obraz stroje.")
 
-st.caption("GoPro Asistent • Verze vylepšená • 2026")
+st.caption("GoPro Asistent • Vylepšená verze • 2026")
