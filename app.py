@@ -132,7 +132,11 @@ with tab1:
     col_video, col_text = st.columns([1.65, 1], gap="large")
     with col_video:
         st.subheader("🎥 Videonávod")
-        st.video("https://www.youtube.com/watch?v=LXb3EKWsInQ")
+        # --- VLOŽENÝ NOVÝ SHAREPOINT ODKAZ ---
+        st.markdown("""
+        <iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=ebf4b46d-f64e-485b-be85-5bcba5ba497d&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" 
+                width="100%" height="400" frameborder="0" scrolling="no" allowfullscreen title="GoPro mikrofon.mp4"></iframe>
+        """, unsafe_allow_html=True)
     with col_text:
         st.markdown("""
         ### Příprava mikrofonu
@@ -158,7 +162,7 @@ with tab2:
         st.subheader("🎥 Videonávod")
         st.markdown("""
         <iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=061cd250-a744-4be2-8bd8-d404aed6f8d8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" 
-                width="100%" height="400" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                width="100%" height="400" frameborder="0" scrolling="no" allowfullscreen title="GoPro přijímač.mp4"></iframe>
         """, unsafe_allow_html=True)
     with col_text:
         st.markdown("""
