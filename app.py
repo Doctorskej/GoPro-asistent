@@ -153,21 +153,21 @@ with col_right:
     # TVŮJ DETAILNÍ TEXT VLOŽEN SEM:
     with st.expander("📸 Doporučené průmyslové profily (GoPro Hero 13)"):
         st.markdown("""
-        **1. Celkové záběry linky / pracoviště** Vhodné pro analýzu toku materiálu, pohybu operátorů nebo prostorové uspořádání.
+        **1. Celkové záběry linky / pracoviště** 
         * **Rozlišení:** 4K (ideální poměr kvality a velikosti souboru pro firemní síť).
         * **Snímková frekvence (FPS):** 30 (plynulý, přirozený obraz).
         * **Čočka (Lens):** Wide (Široká) – aby bylo vidět celé zařízení i okolní prostor.
         * **Stabilizace (Hypersmooth):** AutoBoost (vynikající pro natáčení za chůze podél linky).
         * **Barvy:** Natural (věrné podání barev pro identifikaci komponent).
 
-        **2. Technický detail a údržba (Makro)** Klíčové pro natáčení servisních úkonů, zapojování konektorů nebo čtení štítků.
+        **2. Technický detail a údržba** Klíčové pro natáčení servisních úkonů, zapojování konektorů apod.
         * **Rozlišení:** 4K.
         * **FPS:** 30.
         * **Čočka (Lens):** Linear (Lineární) – **Zcela zásadní!** Odstraní zkreslení "rybího oka". Hrany strojů a nosníky budou rovné, což usnadňuje orientaci v prostoru.
         * **Horizon Lock:** Zapnuto. I když se s kamerou nakloníš do útrob stroje, obraz zůstane vodorovně.
         * **Barvy:** Vibrant (Zvýrazní barevné kódování kabelů, diody a bezpečnostní prvky).
 
-        **3. Inspekce v temných prostorech** Uvnitř strojních skříní, pod dopravníky nebo v revizních šachtách.
+        **3. Natáčení v temných prostorech** Uvnitř strojních skříní, pod dopravníky nebo v revizních šachtách.
         * **FPS:** 24 (nižší frekvence dovolí čipu "nasát" více světla z LED svítilen).
         * **ISO Max:** 1600 (vyšší hodnota zajistí viditelnost v šeru, ale s minimálním zrněním).
         * **Ostrost (Sharpness):** Medium (při slabém světle vypadá obraz přirozeněji).
