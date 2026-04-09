@@ -51,17 +51,16 @@ st.markdown(f"""
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
     }}
 
-    /* Stylování expanderu pro troubleshooting */
-    .stExpander {{
-        background: rgba(0, 0, 0, 0.2) !important;
-        border: 1px solid rgba(255, 165, 0, 0.3) !important;
-        border-radius: 12px !important;
-        margin-top: 20px;
-    }}
-
     h1 {{ color: #00AEEF !important; font-weight: 800; letter-spacing: -0.03em; }}
     h2, h3 {{ color: #FFFFFF !important; font-weight: 700; }}
     p, li {{ color: #EEEEEE !important; font-size: 1.08rem; line-height: 1.65; }}
+
+    /* Speciální úprava pro expander v postranním panelu */
+    .stExpander {{
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(0, 174, 239, 0.2) !important;
+        border-radius: 14px !important;
+    }}
 
     .manual-card {{
         background: rgba(255, 255, 255, 0.08);
@@ -108,19 +107,14 @@ with tab1:
         ### Postup připojení
         1. **Vyjmi mikrofon** z dokovací stanice DJI.
         2. **Zkontroluj zapnutí:** (bliká zelené tlačítko).
+           * *Popřípadě zapni podržením červeného tlačítka.*
         3. **Zapni kameru** stisknutím tlačítka **MODE**.
         4. **Přejeď prstem** od shora dolů a pak **doleva**.
         5. Stiskni **„Pair device“**.
         6. Stiskni **2x tlačítko připojení** (modré blikání).
         7. **Podrž tlačítko na 3 vteřiny** (modro-zelené blikání).
-        8. Na kameře klikni na **DJI Mic 3 TX**.
-        """)
-
-    with st.expander("🔍 Co dělat, když se nedaří Bluetooth spojení?"):
-        st.markdown("""
-        * **Kamera nevidí mikrofon:** Mikrofon je možná spárovaný s jiným mobilem. Vypni Bluetooth na mobilu a zkus krok č. 7 znovu.
-        * **Zvuk vypadává:** Bluetooth má malý dosah přes kovové stroje. Snaž se mít přímou viditelnost.
-        * **Firmware:** Pokud se nedaří vůbec, zkontroluj v aplikaci Quik aktualizaci GoPro.
+        8. Na displeji kamery klikni na **DJI Mic 3 TX**.
+        9. **Klikni na řádek** a zařízení se propojí.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -137,19 +131,13 @@ with tab2:
     with col_text:
         st.markdown("""
         ### Postup připojení
-        1. **Vlož kameru** do Media Modu (pozor na konektory!).
-        2. **Vyjmi přijímač** a potvrď **Confirm**.
-        3. **Nasuň přijímač** na Media Mod displejem k sobě.
-        4. **Zapoj kabel** do přijímače (**Out**) a do kamery (**spodní vstup**).
-        5. **Zapni kameru**.
-        """)
-
-    with st.expander("🔍 Co dělat, když zvuk přes Media Mod nefunguje?"):
-        st.markdown("""
-        * **Není slyšet zvuk:** Kamera musí být v Media Modu doražená úplně nadoraz. Zkus ji vyndat a znovu domáčknout.
-        * **Zvuk chrčí:** Na displeji přijímače sjeď dolů a nastav **Gain** na nižší hodnotu (cca -6dB).
-        * **Neznámé příslušenství:** Zkus vyndat baterku z GoPro a znovu zapnout.
-        * **Lupání:** Zkontroluj, zda je kabel v přijímači i kameře doražený až na docvaknutí.
+        1. **Odstraň dvířka** kamery a **otevři media mod**.
+        2. **Vlož kameru** nadoraz na konektory a **zavři mod**.
+        3. **Vyjmi přijímač** a potvrď **Confirm**.
+        4. **Zkontroluj mikrofony**, zda diody svítí zeleně.
+        5. **Nasuň přijímač** z boku media modu displejem k sobě.
+        6. **Zapoj kabel** do přijímače (**Out**) a do kamery (**spodní vstup**).
+        7. **Zapni kameru**.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -160,14 +148,39 @@ with tab3:
     st.image(raw_image_url, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ==================== TIPS ====================
+# ==================== FOOTER SECTION (TIPS & TROUBLESHOOTING) ====================
 st.divider()
 col_l, col_r = st.columns([3, 2], gap="large")
+
+with col_l:
+    st.info("**Tip pro terén:** Pokud fouká, nasaď na mikrofon 'mrtvou kočku' (chlupatý návlek). SD karty promazávej pravidelně v aplikaci Quik.")
+
 with col_r:
     st.header("💡 Tipy a triky")
+    
+    # NOVÁ SEKCE: ŘEŠENÍ PROBLÉMŮ
+    with st.expander("🛠️ Řešení problémů (Troubleshooting)"):
+        st.subheader("🔵 Bluetooth spojení")
+        st.markdown("""
+        * **Kamera nevidí mikrofon:** Mikrofon je možná připojen k mobilu. Vypni Bluetooth v mobilu a zkus párování znovu.
+        * **Zvuk vypadává:** Bluetooth nepřenese signál přes kovové stroje. Udržuj přímou viditelnost.
+        """)
+        
+        st.subheader("📡 Media Mod + Přijímač")
+        st.markdown("""
+        * **Není slyšet zvuk:** Kamera musí být v Media Modu doražená úplně nadoraz na USB-C konektor.
+        * **Zvuk chrčí:** Na přijímači sjeď dolů a nastav **Gain** na nižší hodnotu (např. -6dB).
+        * **Lupání ve zvuku:** Zkontroluj, zda je jack kabel v přijímači i v kameře zastrčen nadoraz (musí cvaknout).
+        """)
+        
+        st.subheader("⚡ Obecné")
+        st.markdown("""
+        * **Neznámé příslušenství:** Vyndej baterku z GoPro, znovu nasaď Media Mod a zapni.
+        * **Vybito:** DJI pouzdro nabíjí mikrofony, ale samo musí být nabité (kontroluj diody na boku).
+        """)
+
+    st.subheader("📚 Manuály")
     url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
     url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
     st.markdown(f'<a href="{url_gopro}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál GoPro Hero 13</span></div></a>', unsafe_allow_html=True)
     st.markdown(f'<a href="{url_dji}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál DJI Mic 3</span></div></a>', unsafe_allow_html=True)
-with col_l:
-    st.info("**Tip pro terén:** Pokud fouká, nasaď na mikrofon 'mrtvou kočku' (chlupatý návlek).")
