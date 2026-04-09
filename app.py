@@ -7,13 +7,14 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CSS ====================
+# ==================== CSS - VIDITELNÝ EXPANDER + SVĚTLEJŠÍ POZADÍ ====================
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
 <style>
+    /* ZESVĚTLENÍ CELKOVÉHO POZADÍ - Snížení neprůhlednosti překryvu */
     .stApp {{
-        background-image: linear-gradient(rgba(8, 12, 22, 0.94), rgba(8, 12, 22, 0.91)), url("{pozadi_url}");
+        background-image: linear-gradient(rgba(8, 12, 22, 0.85), rgba(8, 12, 22, 0.82)), url("{pozadi_url}");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -52,14 +53,40 @@ st.markdown(f"""
 
     h1 {{ color: #00AEEF !important; font-weight: 800; letter-spacing: -0.03em; }}
     h2, h3 {{ color: #FFFFFF !important; font-weight: 700; }}
-    p, li {{ color: #EEEEEE !important; font-size: 1.08rem; line-height: 1.65; }}
+    p, li, label {{ color: #FFFFFF !important; font-size: 1.08rem; line-height: 1.65; }}
 
-    .stExpander {{
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(0, 174, 239, 0.2) !important;
-        border-radius: 14px !important;
-        margin-bottom: 10px;
+    /* OPRAVA EXPANDERU - Bílé pozadí a tmavý text */
+    div[data-testid="stExpander"] summary {{
+        background-color: #FFFFFF !important;
+        color: #121212 !important;
+        border-radius: 10px 10px 0 0 !important;
+        padding: 12px 20px !important;
+        margin-bottom: 0 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }}
+    div[data-testid="stExpander"] div[role="region"] {{
+        background-color: #FFFFFF !important;
+        border-radius: 0 0 10px 10px !important;
+        padding: 1.5rem !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }}
+    div[data-testid="stExpander"] summary span,
+    div[data-testid="stExpander"] summary p,
+    div[data-testid="stExpander"] summary label {
+        color: #121212 !important;
+    }
+    div[data-testid="stExpander"] p,
+    div[data-testid="stExpander"] li,
+    div[data-testid="stExpander"] td {
+        color: #121212 !important;
+    }
+    div[data-testid="stExpander"] th {
+        color: #00AEEF !important;
+        border-bottom: 2px solid #00AEEF !important;
+    }
+    div[data-testid="stExpander"] tr:not(:last-child) td {
+        border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+    }
 
     .manual-card {{
         background: rgba(255, 255, 255, 0.08);
@@ -150,18 +177,20 @@ with col_l:
     st.info("**Tip pro údržbu:** Pro technická videa vždy nastavte čočku **Linear**, aby linky strojů nebyly prohnuté.")
 
 with col_r:
-    st.header("💡 Tipy a řešení problémů")
+    st.header("💡 Diagnostika a parametry")
 
-    with st.expander("📸 Doporučené nastavení kamery"):
+    # NOVÝ, VIDITELNÝ EXPANDER - Doporučené nastavení
+    with st.expander("Doporučené nastavení kamery"):
         st.markdown("""
         | Typ nahrávání | Rozlišení | Čočka (Lens) | Stabilizace |
         | :--- | :--- | :--- | :--- |
         | **Pohyb u linky** | 4K / 30 FPS | Wide (Široká) | AutoBoost |
-        | **Detail úkonu** | 4K / 30 FPS | **Linear (Rovná)** | Horizon Lock |
+        | **Detail úkonu** | 4K / 30 FPS | Linear (Rovná) | Horizon Lock |
         | **Špatné světlo** | 4K / 24 FPS | Linear (Rovná) | Standard |
         """)
 
-    with st.expander("🛠️ Řešení problémů (Troubleshooting)"):
+    # NOVÝ, VIDITELNÝ EXPANDER - Řešení problémů
+    with st.expander("Řešení problémů (Troubleshooting)"):
         st.subheader("🔵 Bluetooth připojení")
         st.markdown("""
         * **Kamera nevidí mikrofon:** Pravděpodobně je mikrofon připojený k tvému mobilu. Vypni Bluetooth v mobilu a zkus to znovu.
@@ -171,7 +200,7 @@ with col_r:
         st.markdown("""
         * **Není slyšet zvuk:** Zkontroluj, jestli je kamera v Media Modu doražená až nadoraz na konektor. Musí tam pevně sedět.
         * **Lupání ve zvuku:** Dotlač propojovací kabel v přijímači i v kameře. Musí to slyšitelně cvaknout.
-        * **Příliš hlasitý zvuk:** Pokud sloupečky na displeji lezou do červené, na přijímači sjeď dolů a sniž **Gain** (Zesílení) na -6 nebo -12 dB.
+        * **Příliš hlasitý zvuk:** Pokud sloupečky na displeji lezou do červené, na přijímači sjeď dolů a sniž Gain (Zesílení) na -6 nebo -12 dB.
         """)
 
     st.subheader("📚 Manuály")
