@@ -193,7 +193,7 @@ with col_r:
         st.markdown("""
         * **Není slyšet zvuk:** Zkontroluj, jestli je kamera v Media Modu doražená až nadoraz na konektor. Musí tam pevně sedět.
         * **Lupání ve zvuku:** Dotlač propojovací kabel v přijímači i v kameře. Musí to slyšitelně cvaknout.
-        * **Příliš hlasitý zvuk:** Pokud sloupečky na displeji lezou do červené, na přijímači sjeď dolů a sniž **Gain** na -6 nebo -12 dB.
+        * **Příliš hlasitý zvuk:** Pokud indikátor hlasitosti dosahuje červených hodnot, upravte v menu přijímače úroveň zisku (Gain) na -6 dB nebo -12 dB.
         """)
 
     st.subheader("📚 Manuály")
