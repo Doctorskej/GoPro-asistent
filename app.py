@@ -7,7 +7,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CSS - BEZ ČERVENÉHO PODTRŽENÍ + LEPŠÍ ČITELNOST ====================
+# ==================== CSS ====================
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
@@ -19,7 +19,6 @@ st.markdown(f"""
         background-attachment: fixed;
     }}
 
-    /* === ODSTRANĚNÍ ČERVENÉHO PODTRŽENÍ === */
     .stTabs [data-baseweb="tab-highlight"] {{
         background-color: transparent !important;
         height: 0 !important;
@@ -28,7 +27,6 @@ st.markdown(f"""
         display: none !important;
     }}
 
-    /* Moderní tabs styl */
     .stTabs [data-baseweb="tab-list"] {{
         gap: 14px;
         padding-bottom: 15px;
@@ -55,7 +53,6 @@ st.markdown(f"""
         box-shadow: 0 0 25px rgba(0, 174, 239, 0.4);
     }}
 
-    /* Glass karty + lepší čitelnost */
     .glass-card {{
         background: rgba(255, 255, 255, 0.09) !important;
         backdrop-filter: blur(16px);
@@ -65,21 +62,9 @@ st.markdown(f"""
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
     }}
 
-    h1 {{
-        color: #00AEEF !important;
-        font-weight: 800;
-        letter-spacing: -0.03em;
-    }}
-    h2, h3 {{
-        color: #FFFFFF !important;
-        font-weight: 700;
-    }}
-
-    p, li {{
-        color: #EEEEEE !important;
-        font-size: 1.08rem;
-        line-height: 1.65;
-    }}
+    h1 {{ color: #00AEEF !important; font-weight: 800; letter-spacing: -0.03em; }}
+    h2, h3 {{ color: #FFFFFF !important; font-weight: 700; }}
+    p, li {{ color: #EEEEEE !important; font-size: 1.08rem; line-height: 1.65; }}
 
     .manual-card {{
         background: rgba(255, 255, 255, 0.08);
@@ -97,16 +82,8 @@ st.markdown(f"""
         border-color: #00AEEF;
         transform: translateY(-3px);
     }}
-    .manual-card-icon {{
-        font-size: 2.3rem;
-        margin-right: 20px;
-        color: #00AEEF;
-    }}
-    .manual-card-text {{
-        font-size: 1.18rem;
-        font-weight: 600;
-        color: #FFFFFF;
-    }}
+    .manual-card-icon {{ font-size: 2.3rem; margin-right: 20px; color: #00AEEF; }}
+    .manual-card-text {{ font-size: 1.18rem; font-weight: 600; color: #FFFFFF; }}
 
     img, iframe, video {{
         border-radius: 16px;
@@ -128,56 +105,57 @@ tab1, tab2, tab3 = st.tabs([
 
 with tab1:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.header("🔵 Postup pro přímé Bluetooth spojení")
+    st.header("🔵 Propojení kamery a jednoho mikrofonu přes Bluetooth")
     col_video, col_text = st.columns([1.65, 1], gap="large")
     with col_video:
         st.subheader("🎥 Videonávod")
-        # --- VLOŽENÝ NOVÝ SHAREPOINT ODKAZ ---
         st.markdown("""
         <iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=ebf4b46d-f64e-485b-be85-5bcba5ba497d&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" 
-                width="100%" height="400" frameborder="0" scrolling="no" allowfullscreen title="GoPro mikrofon.mp4"></iframe>
+                style="width: 100%; aspect-ratio: 16 / 9; border: none;" 
+                allowfullscreen title="GoPro mikrofon.mp4"></iframe>
         """, unsafe_allow_html=True)
     with col_text:
         st.markdown("""
-        ### Příprava mikrofonu
-        1. **Vyjmi mikrofon** z dokovací stanice DJI.  
-        2. **Zkontroluj napájení:** Zapnutý = bliká zelené tlačítko.
-        
-        ### Nastavení kamery
-        3. **Zapni kameru** (boční tlačítko `MODE`).  
-        4. **Přejeď prstem dolů** a pak **doleva**.  
-        5. Stiskni **„Pair device“**.
-        
-        ### Samotné párování
-        6. Na mikrofonu **podrž tlačítko Link**.  
-        7. Na displeji kamery klikni na **DJI Mic 3 TX**.
+        ### Postup připojení
+        1. **Vyjmi mikrofon** z dokovací stanice DJI.
+        2. **Zkontroluj zapnutí:** (bliká zelené tlačítko).
+           * *Popřípadě zapni podržením červeného tlačítka, než se rozbliká zelená dioda.*
+        3. **Zapni kameru** stisknutím tlačítka **MODE**.
+        4. **Přejeď prstem** od shora dolů.
+        5. **Přejeď prstem** doleva.
+        6. Stiskni **„Pair device“**.
+        7. Stiskni **2x tlačítko připojení** (dioda modře bliká).
+        8. **Podrž tlačítko na 3 vteřiny** (dioda bliká modro-zeleně).
+        9. Na kameře se objeví **DJI Mic 3 TX**.
+        10. **Klikni na řádek** a zařízení se propojí (text zmodrá a dioda na mikrofonu svítí modře).
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
 with tab2:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.header("📡 Propojení kamery s Media Modem a přijímačem RX")
+    st.header("📡 Propojení kamery s media modem a přijímačem RX")
     col_video, col_text = st.columns([1.65, 1], gap="large")
     with col_video:
         st.subheader("🎥 Videonávod")
         st.markdown("""
         <iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=061cd250-a744-4be2-8bd8-d404aed6f8d8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" 
-                width="100%" height="400" frameborder="0" scrolling="no" allowfullscreen title="GoPro přijímač.mp4"></iframe>
+                style="width: 100%; aspect-ratio: 16 / 9; border: none;" 
+                allowfullscreen title="GoPro přijímač.mp4"></iframe>
         """, unsafe_allow_html=True)
     with col_text:
         st.markdown("""
-        ### Instalace Media Modu
-        1. **Odstraň dvířka** kamery.  
-        2. **Vlož kameru** do Media Modu.  
-        3. **Zavři Media Mod**.
-        
-        ### Příprava DJI přijímače
-        4. **Vyjmi přijímač** z pouzdra.  
-        5. **Potvrď informaci** na displeji (Confirm).
-        
-        ### Fyzické propojení
-        6. **Nasuň přijímač** na Media Mod.  
-        7. **Zapoj kabel** do přijímače (OUT) a do kamery.
+        ### Postup připojení
+        1. **Odstraň dvířka** kamery.
+        2. **Otevři media mod**.
+        3. **Vlož kameru** do media modu (propojení konektorů).
+        4. **Zavři media mod**.
+        5. **Vyjmi přijímač** z pouzdra.
+        6. **Potvrď informaci** s QR kódem (**Confirm**).
+        7. **Vyjmi oba mikrofony** a zkontroluj zelené diody.
+        8. **Nasuň přijímač** z boku media modu displejem k sobě.
+        9. **Zapoj kabel** do přijímače (**Out**).
+        10. **Zapoj kabel** do kamery (**spodní vstup**).
+        11. **Zapni kameru**.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -191,7 +169,6 @@ with tab3:
 
 # ==================== TIPS ====================
 st.divider()
-
 col_l, col_r = st.columns([3, 2], gap="large")
 
 with col_r:
@@ -203,17 +180,8 @@ with col_r:
     url_gopro = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
     url_dji = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
     
-    st.markdown(f"""
-    <a href="{url_gopro}" target="_blank" style="text-decoration:none;">
-        <div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál GoPro Hero 13</span></div>
-    </a>
-    """, unsafe_allow_html=True)
-    
-    st.markdown(f"""
-    <a href="{url_dji}" target="_blank" style="text-decoration:none;">
-        <div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál DJI Mic 3</span></div>
-    </a>
-    """, unsafe_allow_html=True)
+    st.markdown(f'<a href="{url_gopro}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál GoPro Hero 13</span></div></a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{url_dji}" target="_blank" style="text-decoration:none;"><div class="manual-card"><span class="manual-card-icon">📘</span><span class="manual-card-text">Manuál DJI Mic 3</span></div></a>', unsafe_allow_html=True)
 
 with col_l:
     st.info("**Tip pro použití v terénu:** Otevři appku na mobilu v plném režimu. Všechny kroky jsou testovány na GoPro Hero 13 + DJI Mic 3.")
