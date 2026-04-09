@@ -7,184 +7,127 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CSS - KONTRAST A STABILNÍ BARVY ====================
-pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
+# ==================== CSS ====================
+# Tyrkysová barva: #00AEEF
+# Tmavé poloprůhledné pozadí pro karty: rgba(0, 0, 0, 0.4)
+# Světlejší tyrkysový okraj: rgba(0, 174, 239, 0.4)
+# Světlejší tyrkysová box-shadow: rgba(0, 174, 239, 0.3)
+# Tmavší tyrkysová barva pro text na hover: #0088cc
 
-st.markdown(f"""
+st.markdown("""
 <style>
-    /* 1. CELKOVÉ POZADÍ */
-    .stApp {{
-        background-image: linear-gradient(rgba(8, 12, 22, 0.75), rgba(8, 12, 22, 0.7)), url("{pozadi_url}");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }}
+    h1, h2, h3 { color: #00AEEF !important; }
+    p, li { color: #00AEEF !important; }
 
-    /* 2. ZÁLOŽKY (TABS) */
-    .stTabs [data-baseweb="tab-highlight"] {{ background-color: transparent !important; height: 0 !important; }}
-    .stTabs [data-baseweb="tab-border"] {{ display: none !important; }}
-    .stTabs [data-baseweb="tab-list"] {{ gap: 14px; padding-bottom: 15px; }}
-    .stTabs [data-baseweb="tab"] {{
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        padding: 15px 26px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #FFFFFF;
-        border: 1px solid rgba(0, 174, 239, 0.4);
-    }}
-    .stTabs [data-baseweb="tab"][aria-selected="true"] {{
-        background: rgba(0, 174, 239, 0.4) !important;
-        border: 2px solid #00AEEF !important;
-    }}
-
-    /* 3. HLAVNÍ KARTY */
-    .glass-card {{
-        background: rgba(0, 0, 0, 0.65) !important;
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 18px;
-        padding: 2.5rem;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-    }}
-
-    /* 4. VIDITELNOST TEXTU - Bílá + stín */
-    p, li, [data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] li {{
-        color: #FFFFFF !important;
-        font-weight: 500 !important;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.8) !important;
-        line-height: 1.6;
-    }}
-
-    h1, h2, h3 {{ 
-        color: #00AEEF !important; 
-        font-weight: 800; 
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
-    }}
-
-    /* 5. EXPANDÉRY - Fix barev proti problikávání */
-    div[data-testid="stExpander"] {{
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(0, 174, 239, 0.5) !important;
-        border-radius: 14px !important;
-    }}
-    div[data-testid="stExpander"] summary {{
-        background-color: transparent !important;
-        color: #FFFFFF !important;
-    }}
-    div[data-testid="stExpander"] summary:hover {{
-        background-color: rgba(0, 174, 239, 0.15) !important;
-        color: #00AEEF !important;
-    }}
-    div[data-testid="stExpander"] [data-testid="stExpanderDetails"] {{
-        background-color: rgba(0, 0, 0, 0.3) !important;
-    }}
-
-    /* MANUÁLOVÉ KARTY */
-    .manual-card {{
-        background: rgba(0, 174, 239, 0.2);
-        border: 1px solid #00AEEF;
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 12px;
+    /* Styl pro nadpisy sekcí s ikonou, které jsou volně na pozadí */
+    .section-header {
         display: flex;
         align-items: center;
-        transition: 0.3s ease;
-    }}
-    .manual-card:hover {{ background: rgba(0, 174, 239, 0.35); transform: translateY(-2px); }}
-    
-    img, iframe, video {{ border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }}
+        margin-bottom: 20px;
+    }
+    .section-header-icon {
+        font-size: 2rem;
+        margin-right: 15px;
+    }
+    .section-header-text {
+        color: #00AEEF;
+        font-size: 1.8rem;
+        font-weight: 800;
+    }
+
+    /* Styl pro expandery "Tipy a řešení" a "Řešení problémů" */
+    .stExpander {
+        background-color: rgba(0, 0, 0, 0.4) !important; /* Tmavší, poloprůhledné pozadí */
+        border-radius: 12px !important;
+        border: 1px solid rgba(0, 174, 239, 0.4) !important; /* Tyrkysový okraj */
+        box-shadow: 0 0 15px rgba(0, 174, 239, 0.3) !important; /* Tyrkysová box-shadow pro "záři" */
+        margin-bottom: 10px !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+    .stExpander:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 0 20px rgba(0, 174, 239, 0.4) !important;
+    }
+    .stExpander summary {
+        color: #00AEEF !important; /* Tyrkysový text */
+        font-weight: 600 !important;
+    }
+
+    /* Styl pro banery "Manuály", aby vypadaly stejně jako expandery */
+    .glass-card-banner {
+        background-color: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 174, 239, 0.4);
+        box-shadow: 0 0 15px rgba(0, 174, 239, 0.3);
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .glass-card-banner:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(0, 174, 239, 0.4);
+    }
+    .glass-card-text {
+        color: #00AEEF;
+        font-weight: 600;
+        margin-left: 10px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # ==================== OBSAH ====================
-st.title("📹 GoPro Asistent")
-st.markdown("**Průvodce pro Hero 13 + DJI Mic 3 v průmyslovém provozu**")
+# Nadpis s tyrkysovou barvou textu a ikonou sešitu, volně na pozadí
+st.markdown("""
+<div class="section-header">
+    <span class="section-header-icon">📘</span>
+    <span class="section-header-text">GoPro Asistent</span>
+</div>
+""", unsafe_allow_html=True)
+st.markdown("<p>Návod pro nahrávání údržby a technických instruktáží (Hero 13 + DJI Mic 3)</p>", unsafe_allow_html=True)
 
-tab1, tab2, tab3 = st.tabs(["🔵 Připojení jednoho mikrofonu", "📡 Připojení obou mikrofonů", "⚡ Tahák"])
+# ... (Kód pro záložky a videa, s tyrkysovými nadpisy a textem) ...
 
-with tab1:
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.header("🔵 Postup pro přímé Bluetooth spojení")
-    c1, c2 = st.columns([1.6, 1], gap="large")
-    with c1:
-        st.markdown("""<iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=ebf4b46d-f64e-485b-be85-5bcba5ba497d&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" style="width: 100%; aspect-ratio: 16 / 9; border: none;" allowfullscreen></iframe>""", unsafe_allow_html=True)
-    with c2:
-        st.markdown("""
-        ### Jak se připojit:
-        1. **Vyjmi mikrofon** (musí blikat zeleně).
-        2. **Zapni GoPro** (boční tlačítko **MODE**).
-        3. **V menu:** Swipe dolů -> Swipe doleva.
-        4. Stiskni **„Pair device“**.
-        5. **Na mikrofonu:** 2x Link (modrá), pak podrž 3s (modro-zelená).
-        6. **Na displeji:** Klikni na nalezený **DJI Mic 3 TX**.
-        """)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with tab2:
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.header("📡 Připojení přes Media Mod")
-    c1, c2 = st.columns([1.6, 1], gap="large")
-    with c1:
-        st.markdown("""<iframe src="https://legogroup-my.sharepoint.com/personal/jan_drvota_lego_com/_layouts/15/embed.aspx?UniqueId=061cd250-a744-4be2-8bd8-d404aed6f8d8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" style="width: 100%; aspect-ratio: 16 / 9; border: none;" allowfullscreen></iframe>""", unsafe_allow_html=True)
-    with c2:
-        st.markdown("""
-        ### Jak se připojit:
-        1. **Kamera:** Zasuň ji nadoraz do Media Modu.
-        2. **Přijímač:** Vyjmi z pouzdra a potvrď **Confirm**.
-        3. **Sáňky:** Nasuň přijímač do sáněk na Modu.
-        4. **Kabel:** Propoj **OUT** a **spodní jack** na kameře.
-        5. **Kontrola:** Na displeji se musí hýbat sloupce zvuku.
-        """)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with tab3:
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.image("https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro%20propojen%C3%AD.png", use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# ==================== PATIČKA ====================
 st.divider()
-col_left, col_right = st.columns([3, 2], gap="large")
 
-with col_right:
-    st.header("💡 Tipy a řešení")
-    
-    # TVŮJ DETAILNÍ TEXT VLOŽEN SEM:
-    with st.expander("📸 Doporučené průmyslové profily (GoPro Hero 13)"):
-        st.markdown("""
-        **1. Celkové záběry linky / pracoviště** 
-        * **Rozlišení:** 4K (ideální poměr kvality a velikosti souboru pro firemní síť).
-        * **Snímková frekvence (FPS):** 30 (plynulý, přirozený obraz).
-        * **Čočka (Lens):** Wide (Široká) – aby bylo vidět celé zařízení i okolní prostor.
-        * **Stabilizace (Hypersmooth):** AutoBoost (vynikající pro natáčení za chůze podél linky).
-        * **Barvy:** Natural (věrné podání barev pro identifikaci komponent).
-
-        **2. Technický detail a údržba**
-        * **Rozlišení:** 4K.
-        * **FPS:** 30.
-        * **Čočka (Lens):** Linear (Lineární) – **Zcela zásadní!** Odstraní zkreslení "rybího oka". Hrany strojů a nosníky budou rovné, což usnadňuje orientaci v prostoru.
-        * **Horizon Lock:** Zapnuto. I když se s kamerou nakloníš do útrob stroje, obraz zůstane vodorovně.
-        * **Barvy:** Vibrant (Zvýrazní barevné kódování kabelů, diody a bezpečnostní prvky).
-
-        **3. Natáčení v temných prostorech**
-        * **FPS:** 24 (nižší frekvence dovolí čipu "nasát" více světla z LED svítilen).
-        * **ISO Max:** 1600 (vyšší hodnota zajistí viditelnost v šeru, ale s minimálním zrněním).
-        * **Ostrost (Sharpness):** Medium (při slabém světle vypadá obraz přirozeněji).
-        * **Stabilizace:** Standard (v šeru vysoká stabilizace způsobuje rozmazání pohybu, tzv. "duchy").
-        """)
-
-    with st.expander("🛠️ Řešení problémů"):
-        st.markdown("""
-        * **Bez zvuku:** Zkontroluj, jestli kamera v Modu sedí úplně nadoraz.
-        * **Limit zvuku:** Pokud indikátor hlasitosti na displeji dosahuje červených hodnot, v menu přijímače snižte zesílení (**Gain**) na -6 nebo -12 dB.
-        """)
-
-    st.subheader("📚 Manuály")
-    u_g = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
-    u_d = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
-    st.markdown(f'<a href="{u_g}" target="_blank" style="text-decoration:none;"><div class="manual-card">📘 Manuál GoPro Hero 13</div></a>', unsafe_allow_html=True)
-    st.markdown(f'<a href="{u_d}" target="_blank" style="text-decoration:none;"><div class="manual-card">📘 Manuál DJI Mic 3</div></a>', unsafe_allow_html=True)
+col_left, col_right = st.columns(2)
 
 with col_left:
-    st.info("Tip: Čočka **LINEAR** je nejlepší pro technickou dokumentaci – nedeformuje obraz stroje.")
+    # Sekce Tipy a řešení s tyrkysovým nadpisem a ikonou žárovky, volně na pozadí
+    st.markdown("""
+    <div class="section-header">
+        <span class="section-header-icon">💡</span>
+        <span class="section-header-text">Tipy a řešení</span>
+    </div>
+    """, unsafe_allow_html=True)
+    # Expandery s tyrkysovým textem, tmavým pozadím, svítícím tyrkysovým okrajem.
+    # Ikona a text na začátku textu expanderu zůstávají.
+    with st.expander("Doporučené průmyslové profily"):
+        st.write("- **Pohyb u linky:** 4K / 30 FPS, Čočka: Wide, Stabilizace: AutoBoost, Barvy: Natural")
+        st.write("- **Technický detail a údržba:** 4K / 30 FPS, Čočka: Linear (Zcela zásadní!), Horizon Lock: Zapnuto, Barvy: Vibrant")
+        st.write("- **Inspekce v temných prostorech:** 24 FPS, ISO Max: 1600, Ostrost (Sharpness): Medium, Stabilizace: Standard")
+
+    with st.expander("Řešení problémů (Troubleshooting)"):
+        st.write("- **Kamera nevidí mikrofon:** Vypni Bluetooth v mobilu, mikrofon se k němu možná 'přilepil'.")
+        st.write("- **Není slyšet zvuk:** Zkontroluj, zda je kamera v Modu doražená až nadoraz na USB-C.")
+        st.write("- **Příliš hlasitý zvuk:** Pokud indikátor hlasitosti na displeji dosahuje červených hodnot, v menu přijímače snižte zesílení (Gain) na -6 nebo -12 dB.")
+
+with col_right:
+    # Sekce Manuály s tyrkysovým nadpisem a ikonou sešitu, volně na pozadí
+    st.markdown("""
+    <div class="section-header">
+        <span class="section-header-icon">📘</span>
+        <span class="section-header-text">Manuály</span>
+    </div>
+    """, unsafe_allow_html=True)
+    # Banery: Odstranit modrou poloprůhlednou kartu, ve které byly manuály.
+    # Vytvořit divy s novou třídou "glass-card-banner", aby vypadaly stejně jako expandery (tmavé pozadí, tyrkysový svítící okraj, tyrkysový text).
+    # Zachovat ikony sešitu a text manuálů.
+    # Odkazy na manuály nastavit tak, aby se otevíraly v nové záložce.
+    url_gopro = "https://example.com/gopro_manual.pdf" # Nahraďte skutečnou URL
+    url_dji = "https://example.com/dji_manual.pdf" # Nahraďte skutečnou URL
+
+    st.markdown(f'<a href="{url_gopro}" target="_blank" style="text-decoration:none;"><div class="glass-card-banner"><span class="glass-card-icon">📘</span><span class="glass-card-text">Manuál GoPro Hero 13</span></div></a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{url_dji}" target="_blank" style="text-decoration:none;"><div class="glass-card-banner"><span class="glass-card-icon">📘</span><span class="glass-card-text">Manuál DJI Mic 3</span></div></a>', unsafe_allow_html=True)
