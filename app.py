@@ -101,7 +101,7 @@ st.markdown(f"""
 st.title("📹 GoPro Asistent")
 st.markdown("**Průvodce pro Hero 13 + DJI Mic 3 v průmyslovém provozu**")
 
-tab1, tab2, tab3 = st.tabs(["🔵 Bluetooth", "📡 Media Mod", "⚡ Tahák"])
+tab1, tab2, tab3 = st.tabs(["🔵 Připojení jednoho mikrofonu", "📡 Připojení obou mikrofonů", "⚡ Tahák"])
 
 with tab1:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
@@ -160,14 +160,14 @@ with col_right:
         * **Stabilizace (Hypersmooth):** AutoBoost (vynikající pro natáčení za chůze podél linky).
         * **Barvy:** Natural (věrné podání barev pro identifikaci komponent).
 
-        **2. Technický detail a údržba** Klíčové pro natáčení servisních úkonů, zapojování konektorů apod.
+        **2. Technický detail a údržba**
         * **Rozlišení:** 4K.
         * **FPS:** 30.
         * **Čočka (Lens):** Linear (Lineární) – **Zcela zásadní!** Odstraní zkreslení "rybího oka". Hrany strojů a nosníky budou rovné, což usnadňuje orientaci v prostoru.
         * **Horizon Lock:** Zapnuto. I když se s kamerou nakloníš do útrob stroje, obraz zůstane vodorovně.
         * **Barvy:** Vibrant (Zvýrazní barevné kódování kabelů, diody a bezpečnostní prvky).
 
-        **3. Natáčení v temných prostorech** Uvnitř strojních skříní, pod dopravníky nebo v revizních šachtách.
+        **3. Natáčení v temných prostorech**
         * **FPS:** 24 (nižší frekvence dovolí čipu "nasát" více světla z LED svítilen).
         * **ISO Max:** 1600 (vyšší hodnota zajistí viditelnost v šeru, ale s minimálním zrněním).
         * **Ostrost (Sharpness):** Medium (při slabém světle vypadá obraz přirozeněji).
@@ -176,7 +176,6 @@ with col_right:
 
     with st.expander("🛠️ Řešení problémů"):
         st.markdown("""
-        * **Bluetooth:** Vypni Bluetooth v mobilu (mikrofon se často 'přilepí' k němu).
         * **Bez zvuku:** Zkontroluj, jestli kamera v Modu sedí úplně nadoraz.
         * **Limit zvuku:** Pokud indikátor hlasitosti na displeji dosahuje červených hodnot, v menu přijímače snižte zesílení (**Gain**) na -6 nebo -12 dB.
         """)
