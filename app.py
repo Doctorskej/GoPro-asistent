@@ -7,13 +7,13 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CSS ====================
+# ==================== CSS - OPRAVA KONTRASTU A VIDITELNOSTI ====================
 pozadi_url = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop"
 
 st.markdown(f"""
 <style>
     .stApp {{
-        background-image: linear-gradient(rgba(8, 12, 22, 0.94), rgba(8, 12, 22, 0.91)), url("{pozadi_url}");
+        background-image: linear-gradient(rgba(8, 12, 22, 0.9), rgba(8, 12, 22, 0.85)), url("{pozadi_url}");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -54,11 +54,22 @@ st.markdown(f"""
     h2, h3 {{ color: #FFFFFF !important; font-weight: 700; }}
     p, li {{ color: #EEEEEE !important; font-size: 1.08rem; line-height: 1.65; }}
 
-    .stExpander {{
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(0, 174, 239, 0.2) !important;
+    /* KOMPLETNÍ OPRAVA EXPANDERŮ - Bílý podklad, černý text pro max. čitelnost */
+    div[data-testid="stExpander"] {{
+        background-color: #FFFFFF !important;
         border-radius: 14px !important;
-        margin-bottom: 10px;
+        border: 2px solid #00AEEF !important;
+        margin-bottom: 12px;
+    }}
+    
+    /* Vynucení černé barvy pro text uvnitř expanderu */
+    div[data-testid="stExpander"] p, 
+    div[data-testid="stExpander"] li,
+    div[data-testid="stExpander"] span,
+    div[data-testid="stExpander"] label,
+    div[data-testid="stExpander"] summary p {{
+        color: #000000 !important;
+        font-weight: 600 !important;
     }}
 
     .manual-card {{
@@ -131,7 +142,7 @@ with tab2:
         2. **Přijímač:** Vyndej z pouzdra a potvrď **Confirm**.
         3. **Uchycení:** Nasuň přijímač do sáněk na boku Media Modu.
         4. **Propojení:** Zapoj kabel do přijímače (**OUT**) a do kamery (**spodní jack**).
-        5. **Kontrola:** Na displeji se musí objevit ikona mikrofonu a hýbat se sloupečky zvuku.
+        5. **Kontrola:** Na displeji se musí objevit ikona mikrofonu.
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -152,13 +163,24 @@ with col_l:
 with col_r:
     st.header("💡 Tipy a řešení problémů")
 
-    with st.expander("📸 Doporučené nastavení kamery"):
+    # NOVÉ STRUKTUROVANÉ NASTAVENÍ - Bílý podklad, Váš text
+    with st.expander("📸 Doporučené průmyslové profily"):
         st.markdown("""
-        | Typ nahrávání | Rozlišení | Čočka (Lens) | Stabilizace |
-        | :--- | :--- | :--- | :--- |
-        | **Pohyb u linky** | 4K / 30 FPS | Wide (Široká) | AutoBoost |
-        | **Detail úkonu** | 4K / 30 FPS | **Linear (Rovná)** | Horizon Lock |
-        | **Špatné světlo** | 4K / 24 FPS | Linear (Rovná) | Standard |
+        **1. Celkové záběry linky / pracoviště** *Vhodné pro analýzu toku materiálu, pohybu operátorů nebo prostorové uspořádání.* * **Rozlišení:** 4K (ideální pro firemní síť).  
+        * **FPS:** 30 (plynulý obraz).  
+        * **Čočka (Lens):** Wide (Široká).  
+        * **Stabilizace:** AutoBoost.  
+        * **Barvy:** Natural (věrné podání).  
+
+        **2. Technický detail a údržba (Makro)** *Klíčové pro servisní úkony, zapojování konektorů nebo čtení štítků.* * **Rozlišení:** 4K / **FPS:** 30.  
+        * **Čočka (Lens):** **Linear (Lineární)** – Zcela zásadní! Odstraní zkreslení. Hrany strojů budou rovné.  
+        * **Horizon Lock:** Zapnuto (obraz zůstane vodorovně).  
+        * **Barvy:** Vibrant (zvýrazní kabely a diody).  
+
+        **3. Inspekce v temných prostorech** *Uvnitř strojních skříní, pod dopravníky nebo v šachtách.* * **FPS:** 24 (více světla pro čip).  
+        * **ISO Max:** 1600 (viditelnost v šeru).  
+        * **Ostrost:** Medium.  
+        * **Stabilizace:** Standard (v šeru brání duchům v obraze).
         """)
 
     with st.expander("🛠️ Řešení problémů (Troubleshooting)"):
@@ -171,7 +193,7 @@ with col_r:
         st.markdown("""
         * **Není slyšet zvuk:** Zkontroluj, jestli je kamera v Media Modu doražená až nadoraz na konektor. Musí tam pevně sedět.
         * **Lupání ve zvuku:** Dotlač propojovací kabel v přijímači i v kameře. Musí to slyšitelně cvaknout.
-        * **Příliš hlasitý zvuk:** Pokud sloupečky na displeji lezou do červené, na přijímači sjeď dolů a sniž **Gain** (Zesílení) na -6 nebo -12 dB.
+        * **Příliš hlasitý zvuk:** Pokud sloupečky na displeji lezou do červené, na přijímači sjeď dolů a sniž **Gain** na -6 nebo -12 dB.
         """)
 
     st.subheader("📚 Manuály")
