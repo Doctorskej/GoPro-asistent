@@ -80,20 +80,37 @@ st.markdown(f"""
         background-color: rgba(0, 0, 0, 0.3) !important;
     }}
 
-    /* MANUÁLOVÉ KARTY */
+    /* ==================== MANUÁLOVÉ KARTY – sjednocený vizuál ==================== */
     .manual-card {{
-        background: rgba(0, 174, 239, 0.2);
-        border: 1px solid #00AEEF;
+        background: rgba(255, 255, 255, 0.07) !important;
+        border: 1px solid rgba(0, 174, 239, 0.35) !important;
         border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 12px;
+        padding: 1.35rem 1.8rem;
+        margin-bottom: 14px;
         display: flex;
         align-items: center;
-        transition: 0.3s ease;
+        gap: 14px;
+        font-size: 1.18rem;
+        font-weight: 600;
+        color: #FFFFFF !important;
+        text-decoration: none !important;
+        transition: all 0.35s ease;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     }}
-    .manual-card:hover {{ background: rgba(0, 174, 239, 0.35); transform: translateY(-2px); }}
-    
-    img, iframe, video {{ border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }}
+
+    .manual-card:hover {{
+        background: rgba(0, 174, 239, 0.15) !important;
+        border-color: #00AEEF !important;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0, 174, 239, 0.3);
+    }}
+
+    .manual-card::before {{
+        content: "📘";
+        font-size: 1.75rem;
+        flex-shrink: 0;
+    }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -150,7 +167,6 @@ col_left, col_right = st.columns([3, 2], gap="large")
 with col_right:
     st.header("💡 Tipy a řešení")
     
-    # TVŮJ DETAILNÍ TEXT VLOŽEN SEM:
     with st.expander("📸 Doporučené průmyslové profily (GoPro Hero 13)"):
         st.markdown("""
         **1. Celkové záběry linky / pracoviště** 
@@ -183,8 +199,22 @@ with col_right:
     st.subheader("📚 Manuály")
     u_g = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/GoPro13%20manual.pdf"
     u_d = "https://raw.githubusercontent.com/Doctorskej/GoPro-asistent/main/DJI_Mic_3_User_Manual_CS%20(1).pdf"
-    st.markdown(f'<a href="{u_g}" target="_blank" style="text-decoration:none;"><div class="manual-card">📘 Manuál GoPro Hero 13</div></a>', unsafe_allow_html=True)
-    st.markdown(f'<a href="{u_d}" target="_blank" style="text-decoration:none;"><div class="manual-card">📘 Manuál DJI Mic 3</div></a>', unsafe_allow_html=True)
+    
+    st.markdown(f'''
+        <a href="{u_g}" target="_blank" style="text-decoration:none;">
+            <div class="manual-card">
+                <span>Manuál GoPro Hero 13</span>
+            </div>
+        </a>
+    ''', unsafe_allow_html=True)
+    
+    st.markdown(f'''
+        <a href="{u_d}" target="_blank" style="text-decoration:none;">
+            <div class="manual-card">
+                <span>Manuál DJI Mic 3</span>
+            </div>
+        </a>
+    ''', unsafe_allow_html=True)
 
 with col_left:
     st.info("Tip: Čočka **LINEAR** je nejlepší pro technickou dokumentaci – nedeformuje obraz stroje.")
